@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google Fonts Import: Playfair Display, Cinzel, Plus Jakarta Sans, Outfit */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --bg-primary: #FAF8F5;
+  --bg-secondary: #F3EFEA;
+  --text-primary: #122A23;
+  --text-muted: #5A6E67;
+  --accent-gold: #C5A059;
+  --accent-emerald: #1A3D33;
+}
+
+body {
+  background-color: #FAF8F5;
+  color: #122A23;
+  font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: 'Playfair Display', 'Cinzel', serif;
+  color: #122A23;
+  letter-spacing: -0.01em;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-outfit {
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #1A3D33;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C5A059;
+}
+
+/* Glassmorphism Light Luxury Panels */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  box-shadow: 0 10px 30px -10px rgba(18, 42, 35, 0.08);
+}
+
+.glass-panel-gold {
+  background: linear-gradient(135deg, rgba(243, 239, 234, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(197, 160, 89, 0.45);
+  box-shadow: 0 15px 35px -10px rgba(197, 160, 89, 0.18);
+}
+
+.glass-card-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(197, 160, 89, 0.7);
+  box-shadow: 0 20px 40px -15px rgba(18, 42, 35, 0.14), 0 0 20px rgba(197, 160, 89, 0.25);
+}
+
+/* Gold Gradient Text */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #1A3D33 0%, #C5A059 50%, #9E7B35 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-emerald {
+  background: linear-gradient(135deg, #1A3D33 0%, #2A6655 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Masterplan GIS Glow */
+.gis-plot {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.gis-plot:hover {
+  filter: drop-shadow(0px 0px 8px rgba(197, 160, 89, 0.8));
+  stroke-width: 2.5px;
+}
