@@ -2,18 +2,18 @@ import { MetadataRoute } from 'next';
 import { locationHubs, plotSizes, comparisonPages } from '@/lib/seo';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://www.raheja-viva.com';
+  const base = 'https://www.krahejacorpviva.com';
   const now = new Date().toISOString();
 
   const staticPages: MetadataRoute.Sitemap = [
-    { url: base, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
-    { url: `${base}/masterplan`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/villa-studio`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${base}/club`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${base}/investment`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${base}/location`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/rera-guide`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: base, lastModified: now, changeFrequency: 'daily', priority: 1.0 },
+    { url: `${base}/masterplan`, lastModified: now, changeFrequency: 'weekly', priority: 0.95 },
     { url: `${base}/na-plots-pune`, lastModified: now, changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${base}/villa-studio`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/club`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/investment`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/location`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${base}/rera-guide`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${base}/na-plots-pune/buy-guide`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${base}/na-plots-pune/legal-checklist`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${base}/na-plots-pune/investment-guide`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },

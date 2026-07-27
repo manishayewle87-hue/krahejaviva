@@ -1,8 +1,14 @@
 import { Metadata } from 'next';
 
-const SITE_URL = 'https://www.raheja-viva.com';
-const BRAND = 'K Raheja Viva';
+// ─── Core Constants ─────────────────────────────────────────────────────────────
+const SITE_URL = 'https://www.krahejacorpviva.com';
+const BRAND = 'K Raheja Corp Viva';
+const BRAND_ALT = 'K Raheja Viva';
 const PROJECT = 'K Raheja Corp Homes';
+const PHONE = '+918080445445';
+const RERA_NUMBER = 'P52100004980';
+const OG_IMAGE = `${SITE_URL}/images/viva/viva-panoramic-aerial.jpg`;
+const LOGO = `${SITE_URL}/images/viva/kraheja-official-logo-cropped.png`;
 
 // ─── Metadata Generator ────────────────────────────────────────────────────────
 
@@ -19,9 +25,10 @@ export function buildMetadata({
   description,
   keywords,
   path = '',
-  ogImage = '/images/viva/viva-panoramic-aerial.jpg',
+  ogImage = OG_IMAGE,
 }: SEOConfig): Metadata {
   const url = `${SITE_URL}${path}`;
+  const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${SITE_URL}${ogImage}`;
   return {
     title: {
       absolute: title,
@@ -34,6 +41,7 @@ export function buildMetadata({
       canonical: url,
       languages: {
         'en-IN': url,
+        'en-US': url,
         'x-default': url,
       },
     },
@@ -43,30 +51,42 @@ export function buildMetadata({
       title,
       description,
       siteName: `${BRAND} — ${PROJECT}`,
-      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
+      images: [{ url: absoluteOgImage, width: 1200, height: 630, alt: title }],
+      locale: 'en_IN',
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [ogImage],
+      images: [absoluteOgImage],
+      site: '@KRahejaCorpViva',
+      creator: '@KRahejaCorpViva',
     },
     robots: {
       index: true,
       follow: true,
-      googleBot: { index: true, follow: true, 'max-snippet': -1, 'max-image-preview': 'large', 'max-video-preview': -1 },
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-snippet': -1,
+        'max-image-preview': 'large',
+        'max-video-preview': -1,
+        noimageindex: false,
+      },
     },
   };
 }
 
 // ─── JSON-LD Schema Builders ────────────────────────────────────────────────────
 
+/** Google Sitelinks SearchBox eligibility */
 export function websiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'K Raheja Viva',
-    alternateName: ['Raheja Viva Pirangut', 'K Raheja Corp Homes Viva'],
+    '@id': `${SITE_URL}/#website`,
+    name: BRAND,
+    alternateName: [BRAND_ALT, 'K Raheja Viva Pirangut', 'K Raheja Corp Homes Viva', 'Raheja Viva Pune'],
     url: SITE_URL,
     potentialAction: {
       '@type': 'SearchAction',
@@ -79,15 +99,25 @@ export function websiteSchema() {
   };
 }
 
-export function localBusinessSchema() {
+/** Google Knowledge Graph Organization Schema */
+export function organizationSchema() {
   return {
     '@context': 'https://schema.org',
-    '@type': ['LocalBusiness', 'RealEstateAgent'],
-    name: 'K Raheja Corp Homes — Raheja Viva',
+    '@type': 'Organization',
+    '@id': `${SITE_URL}/#organization`,
+    name: PROJECT,
+    alternateName: 'K Raheja Corp Homes',
     url: SITE_URL,
-    logo: `${SITE_URL}/images/viva/kraheja-official-logo-cropped.png`,
-    image: `${SITE_URL}/images/viva/viva-panoramic-aerial.jpg`,
-    description: 'K Raheja Viva is a 100+ acre premium plotted development in Pirangut, West Pune offering NA villa plots, twin villas, and townhouses with 40+ lifestyle amenities.',
+    logo: {
+      '@type': 'ImageObject',
+      url: LOGO,
+      width: 512,
+      height: 512,
+    },
+    image: OG_IMAGE,
+    description: 'K Raheja Corp Homes is a leading real estate developer in India with 5+ decades of legacy, delivering premium residential, commercial, and plotted developments.',
+    telephone: PHONE,
+    email: 'info@krahejacorp.com',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Survey No 273, Next to Aditya Nisarg, Pune-Paud Road, Pirangut',
@@ -96,26 +126,116 @@ export function localBusinessSchema() {
       postalCode: '412115',
       addressCountry: 'IN',
     },
-    geo: { '@type': 'GeoCoordinates', latitude: 18.5053, longitude: 73.6856 },
-    telephone: '+918080445445',
-    openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-      opens: '10:00',
-      closes: '19:00',
-    },
-    priceRange: '₹₹₹₹',
-    sameAs: ['https://www.krahejacorphomes.com'],
+    sameAs: [
+      'https://www.krahejacorphomes.com',
+      'https://www.facebook.com/KRahejaCorpHomes',
+      'https://www.instagram.com/krahejaviva/',
+      'https://www.linkedin.com/company/k-raheja-corp/',
+      'https://twitter.com/KRahejaCorpViva',
+      'https://www.youtube.com/@KRahejaCorpHomes',
+    ],
+    foundingDate: '1956',
+    numberOfEmployees: { '@type': 'QuantitativeValue', value: 500 },
   };
 }
 
+/** Google Local Pack + Maps Knowledge Panel */
+export function localBusinessSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': ['LocalBusiness', 'RealEstateAgent'],
+    '@id': `${SITE_URL}/#localbusiness`,
+    name: `${BRAND} — ${PROJECT}`,
+    alternateName: [BRAND_ALT, 'Raheja Viva Pirangut Plots'],
+    url: SITE_URL,
+    logo: LOGO,
+    image: [
+      OG_IMAGE,
+      `${SITE_URL}/images/viva/hero-estate-aerial.jpg`,
+      `${SITE_URL}/images/viva/viva-clubhouse-night.jpg`,
+    ],
+    description: 'K Raheja Corp Viva is a 100+ acre premium NA plotted development in Pirangut, West Pune offering NA villa plots, twin villas, and townhouses with 40+ lifestyle amenities.',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Survey No 273, Next to Aditya Nisarg, Pune-Paud Road, Pirangut',
+      addressLocality: 'Pirangut',
+      addressRegion: 'Maharashtra',
+      postalCode: '412115',
+      addressCountry: 'IN',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 18.5053,
+      longitude: 73.6856,
+    },
+    hasMap: 'https://maps.google.com/?q=18.5053,73.6856',
+    telephone: PHONE,
+    email: 'vivapune@krahejacorp.com',
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '10:00',
+        closes: '19:00',
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Saturday', 'Sunday'],
+        opens: '10:00',
+        closes: '18:00',
+      },
+    ],
+    priceRange: '₹₹₹₹',
+    currenciesAccepted: 'INR',
+    paymentAccepted: 'Cash, Bank Transfer, Cheque, Home Loan',
+    areaServed: [
+      { '@type': 'City', name: 'Pune' },
+      { '@type': 'State', name: 'Maharashtra' },
+    ],
+    amenityFeature: [
+      { '@type': 'LocationFeatureSpecification', name: '20,000 Sq Ft Signature Clubhouse', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Infinity Pool', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Tennis Courts', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Gymnasium & Spa', value: true },
+      { '@type': 'LocationFeatureSpecification', name: '6,500+ Trees & Landscaping', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'MahaRERA Approved', value: true },
+    ],
+    identifier: [
+      { '@type': 'PropertyValue', name: 'MahaRERA Registration', value: RERA_NUMBER },
+    ],
+    sameAs: [
+      'https://www.krahejacorphomes.com',
+      'https://www.facebook.com/KRahejaCorpHomes',
+      'https://www.instagram.com/krahejaviva/',
+    ],
+  };
+}
+
+/** Google Rich Card - Real Estate Project */
 export function realEstateProjectSchema() {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: 'K Raheja Viva — NA Villa Plots Pirangut',
+    '@type': 'SingleFamilyResidence',
+    '@id': `${SITE_URL}/#project`,
+    name: 'K Raheja Corp Viva — NA Villa Plots & Twin Villas, Pirangut',
     description: 'Premium NA villa plots, twin villas and townhouses in a 100+ acre low-density gated estate in Pirangut, West Pune with Sahyadri mountain views, 20,000 sqft Signature Clubhouse and 40+ amenities.',
-    brand: { '@type': 'Brand', name: 'K Raheja Corp Homes' },
+    url: SITE_URL,
+    image: OG_IMAGE,
+    floorSize: {
+      '@type': 'QuantitativeValue',
+      unitCode: 'FTK',
+      minValue: 2000,
+      maxValue: 6000,
+    },
+    geo: { '@type': 'GeoCoordinates', latitude: 18.5053, longitude: 73.6856 },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Survey No 273, Pune-Paud Road, Pirangut',
+      addressLocality: 'Pirangut',
+      addressRegion: 'Maharashtra',
+      postalCode: '412115',
+      addressCountry: 'IN',
+    },
     offers: {
       '@type': 'AggregateOffer',
       priceCurrency: 'INR',
@@ -123,12 +243,25 @@ export function realEstateProjectSchema() {
       highPrice: '50000000',
       offerCount: '120+',
       availability: 'https://schema.org/InStock',
+      validFrom: '2025-01-01',
     },
-    image: `${SITE_URL}/images/viva/viva-panoramic-aerial.jpg`,
-    url: SITE_URL,
+    numberOfRooms: {
+      '@type': 'QuantitativeValue',
+      minValue: 3,
+      maxValue: 6,
+    },
+    brand: {
+      '@type': 'Brand',
+      name: PROJECT,
+      logo: LOGO,
+    },
+    identifier: [
+      { '@type': 'PropertyValue', name: 'MahaRERA', value: RERA_NUMBER },
+    ],
   };
 }
 
+/** Google SERP Breadcrumb Trails */
 export function breadcrumbSchema(items: { name: string; url: string }[]) {
   return {
     '@context': 'https://schema.org',
@@ -137,11 +270,12 @@ export function breadcrumbSchema(items: { name: string; url: string }[]) {
       '@type': 'ListItem',
       position: idx + 1,
       name: item.name,
-      item: `${SITE_URL}${item.url}`,
+      item: item.url.startsWith('http') ? item.url : `${SITE_URL}${item.url}`,
     })),
   };
 }
 
+/** Google SERP FAQPage Collapsible Rich Results */
 export function faqSchema(faqs: { q: string; a: string }[]) {
   return {
     '@context': 'https://schema.org',
@@ -154,29 +288,76 @@ export function faqSchema(faqs: { q: string; a: string }[]) {
   };
 }
 
-export function articleSchema({ title, description, path, datePublished }: { title: string; description: string; path: string; datePublished: string }) {
+/** Google News / Article Schema for guide pages */
+export function articleSchema({
+  title, description, path, datePublished,
+}: { title: string; description: string; path: string; datePublished: string }) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: title,
     description,
-    image: `${SITE_URL}/images/viva/viva-panoramic-aerial.jpg`,
-    author: { '@type': 'Organization', name: PROJECT },
+    image: [OG_IMAGE],
+    author: { '@type': 'Organization', name: PROJECT, url: SITE_URL },
     publisher: {
       '@type': 'Organization',
       name: PROJECT,
-      logo: { '@type': 'ImageObject', url: `${SITE_URL}/images/viva/kraheja-official-logo-cropped.png` },
+      logo: { '@type': 'ImageObject', url: LOGO },
     },
     datePublished,
     dateModified: new Date().toISOString().split('T')[0],
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}${path}` },
+    inLanguage: 'en-IN',
+    isAccessibleForFree: true,
+  };
+}
+
+/** Google Assistant Speakable Schema — Voice Search Optimization */
+export function speakableSchema(path: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${SITE_URL}${path}`,
+    url: `${SITE_URL}${path}`,
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['.speakable-title', '.speakable-summary'],
+    },
+  };
+}
+
+/** Google Place Schema for estate location */
+export function placeSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Place',
+    '@id': `${SITE_URL}/#place`,
+    name: 'K Raheja Corp Viva Estate, Pirangut',
+    description: '100+ acre luxury plotted estate in the Sahyadri foothills, Pirangut, West Pune.',
+    geo: { '@type': 'GeoCoordinates', latitude: 18.5053, longitude: 73.6856 },
+    hasMap: 'https://maps.google.com/?q=K+Raheja+Corp+Viva+Pirangut',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Survey No 273, Pune-Paud Road, Pirangut',
+      addressLocality: 'Pirangut',
+      addressRegion: 'Maharashtra',
+      postalCode: '412115',
+      addressCountry: 'IN',
+    },
+    telephone: PHONE,
+    publicAccess: true,
+    amenityFeature: [
+      { '@type': 'LocationFeatureSpecification', name: 'Signature Clubhouse 20,000 sq ft', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Sahyadri Mountain Views', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'MahaRERA Approved', value: true },
+    ],
   };
 }
 
 // ─── Location Hub Data ──────────────────────────────────────────────────────────
 
 export const locationHubs = [
-  { slug: 'pirangut',      name: 'Pirangut',       distance: '0 km (Project Location)', population: 'Emerging', highway: 'Pune–Paud Road', note: 'The home of K Raheja Viva itself. Pirangut is the fastest-appreciating micro-market in West Pune.' },
+  { slug: 'pirangut',      name: 'Pirangut',       distance: '0 km (Project Location)', population: 'Emerging', highway: 'Pune–Paud Road', note: 'The home of K Raheja Corp Viva itself. Pirangut is the fastest-appreciating micro-market in West Pune.' },
   { slug: 'mulshi',        name: 'Mulshi',         distance: '8 km',  population: 'Low-density', highway: 'Mulshi Road', note: 'Adjoining nature reserve and dam reservoir; premium weekend home micro-market.' },
   { slug: 'bhugaon',       name: 'Bhugaon',        distance: '4 km',  population: 'Emerging', highway: 'Paud Road', note: 'Growing residential corridor between Kothrud and Mulshi with strong appreciation trajectory.' },
   { slug: 'bavdhan',       name: 'Bavdhan',        distance: '9 km',  population: 'Established', highway: 'Mumbai–Bangalore Highway NH-48', note: 'Established luxury residential suburb with premium malls, schools, and hospitals.' },

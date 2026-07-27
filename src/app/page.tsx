@@ -41,10 +41,10 @@ import {
 } from '@/components/animations/Motion';
 
 const heroImages = [
-  { src: '/images/viva/hero-estate-aerial.jpg',   alt: 'K Raheja Viva — 100+ Acre Luxury Estate, Sahyadri Foothills', tag: 'THE ESTATE'      },
-  { src: '/images/viva/hero-villa-enclaves.jpg',  alt: 'K Raheja Viva — Premium Villa Enclaves & Twin Villas',        tag: 'VILLA ENCLAVES'  },
-  { src: '/images/viva/hero-clubhouse-night.jpg', alt: 'K Raheja Viva — Signature Clubhouse & Infinity Pool at Dusk', tag: 'SIGNATURE CLUB'  },
-  { src: '/images/viva/hero-infinity-pool.jpg',   alt: 'K Raheja Viva — Infinity Pool with Sahyadri Mountain Views',  tag: 'LIFESTYLE'       },
+  { src: '/images/viva/hero-estate-aerial.jpg',   alt: 'K Raheja Corp Viva — 100+ Acre Luxury Estate, Sahyadri Foothills, Pirangut West Pune', tag: 'THE ESTATE'      },
+  { src: '/images/viva/hero-villa-enclaves.jpg',  alt: 'K Raheja Corp Viva — Premium Villa Enclaves & NA Plots, Twin Villas Pirangut',         tag: 'VILLA ENCLAVES'  },
+  { src: '/images/viva/hero-clubhouse-night.jpg', alt: 'K Raheja Corp Viva — 20,000 Sq Ft Signature Clubhouse & Infinity Pool at Dusk',        tag: 'SIGNATURE CLUB'  },
+  { src: '/images/viva/hero-infinity-pool.jpg',   alt: 'K Raheja Corp Viva — Infinity Pool with Sahyadri Mountain Views, West Pune',           tag: 'LIFESTYLE'       },
 ];
 
 export default function HomePage() {
@@ -202,8 +202,8 @@ export default function HomePage() {
               </FloatingBadge>
             </FadeUp>
 
-            {/* World-Class Headline */}
-            <h1 className="font-serif font-bold text-white leading-[1.04] tracking-tight mb-5">
+            {/* World-Class Headline — speakable-title for Google Assistant Voice Search */}
+            <h1 className="speakable-title font-serif font-bold text-white leading-[1.04] tracking-tight mb-5">
               <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-[82px]">
                 <RevealText text="Where Nature" delay={0.15} />
               </span>
@@ -211,18 +211,18 @@ export default function HomePage() {
                 <RevealText text="Meets Luxury" delay={0.30} />
               </span>
               <span className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl">
-                <RevealText text="at Raheja Viva" delay={0.48} className="text-[#C5A059]" />
+                <RevealText text="at K Raheja Corp Viva" delay={0.48} className="text-[#C5A059]" />
               </span>
             </h1>
 
-            {/* World-class sub-copy */}
+            {/* World-class sub-copy — speakable-summary for Google Assistant Voice Search */}
             <FadeUp delay={0.62}>
-              <p className="text-white/72 text-sm sm:text-[15px] max-w-2xl mb-7 leading-relaxed font-medium">
-                Set in the pristine Sahyadri foothills — a masterfully planned{' '}
-                <span className="text-white/90 font-semibold">100+ acre estate</span> where 6,500+ trees
-                breathe life into every morning. Townhouses, twin villas &amp; luxury NA plots,
+              <p className="speakable-summary text-white/72 text-sm sm:text-[15px] max-w-2xl mb-7 leading-relaxed font-medium">
+                K Raheja Corp Viva — set in the pristine Sahyadri foothills — a masterfully planned{' '}
+                <span className="text-white/90 font-semibold">100+ acre luxury NA plotted estate</span> where 6,500+ trees
+                breathe life into every morning. NA villa plots, twin villas &amp; townhouses,
                 just{' '}
-                <span className="text-[#C5A059] font-semibold">12 minutes from Chandani Chowk</span>.
+                <span className="text-[#C5A059] font-semibold">12 minutes from Chandani Chowk, Pirangut, West Pune</span>.
               </p>
             </FadeUp>
 
