@@ -6,67 +6,41 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/', '/admin/', '/*.json$'],
+        disallow: ['/api/', '/_next/', '/admin/'],
       },
       {
-        userAgent: 'Googlebot',
+        userAgent: ['Googlebot', 'Googlebot-Mobile', 'Googlebot-Image', 'Googlebot-Video', 'Google-InspectionTool'],
         allow: '/',
-        disallow: ['/api/', '/_next/'],
-        crawlDelay: 1,
+        disallow: ['/api/'],
       },
       {
-        userAgent: 'Googlebot-Image',
-        allow: '/images/',
-      },
-      {
-        userAgent: 'Googlebot-Video',
+        userAgent: ['Bingbot', 'msnbot', 'BingPreview'],
         allow: '/',
+        disallow: ['/api/'],
       },
       {
-        userAgent: 'Bingbot',
+        userAgent: ['GPTBot', 'ChatGPT-User', 'PerplexityBot', 'Claude-Web', 'anthropic-ai', 'Google-Extended'],
         allow: '/',
-        disallow: ['/api/', '/_next/'],
-        crawlDelay: 2,
+        disallow: ['/api/'],
       },
       {
         userAgent: 'YandexBot',
         allow: '/',
-        disallow: ['/api/', '/_next/'],
-        crawlDelay: 2,
+        disallow: ['/api/'],
       },
       {
         userAgent: 'Baiduspider',
         allow: '/',
-        disallow: ['/api/', '/_next/'],
-        crawlDelay: 3,
-      },
-      {
-        userAgent: 'DuckDuckBot',
-        allow: '/',
-        disallow: ['/api/', '/_next/'],
-        crawlDelay: 2,
-      },
-      {
-        userAgent: 'Slurp', // Yahoo
-        allow: '/',
-        disallow: ['/api/', '/_next/'],
-        crawlDelay: 2,
-      },
-      {
-        userAgent: 'ia_archiver', // Alexa/Internet Archive
-        allow: '/',
-        disallow: ['/api/', '/_next/'],
-      },
-      {
-        userAgent: ['GPTBot', 'CCBot', 'Claude-Web', 'anthropic-ai', 'ChatGPT-User', 'cohere-ai', 'PerplexityBot', 'Google-Extended'],
-        disallow: ['/'],
+        disallow: ['/api/'],
       },
     ],
     sitemap: [
       'https://www.krahejacorpviva.com/sitemap.xml',
       'https://www.krahejacorpviva.com/sitemap-news.xml',
       'https://www.krahejacorpviva.com/sitemap-video.xml',
+      'https://www.krahejacorpviva.com/rss.xml',
     ],
     host: 'https://www.krahejacorpviva.com',
   };
 }
+

@@ -27,17 +27,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/na-plots-pune/pirangut-market-report`, lastModified: now, changeFrequency: 'weekly', priority: 0.91 },
     { url: `${BASE}/na-plots-pune/na-conversion-guide`, lastModified: now, changeFrequency: 'monthly', priority: 0.88 },
     
-    // ─── Core Pages ───────────────────────────────────────────────────────
-    { url: `${BASE}/villa-studio`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${BASE}/club`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${BASE}/investment`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    // ─── Core & Interactive Artifact Pages ─────────────────────────────────
+    { url: `${BASE}/villa-studio`, lastModified: now, changeFrequency: 'weekly', priority: 0.90 },
+    { url: `${BASE}/club`, lastModified: now, changeFrequency: 'weekly', priority: 0.90 },
+    { url: `${BASE}/investment`, lastModified: now, changeFrequency: 'weekly', priority: 0.90 },
+    { url: `${BASE}/investment-calculator`, lastModified: now, changeFrequency: 'weekly', priority: 0.90 },
+    { url: `${BASE}/faq`, lastModified: now, changeFrequency: 'weekly', priority: 0.88 },
+    { url: `${BASE}/hi`, lastModified: now, changeFrequency: 'weekly', priority: 0.88 },
     { url: `${BASE}/location`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/rera-guide`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/investment/pune-real-estate-2025`, lastModified: now, changeFrequency: 'monthly', priority: 0.82 },
     { url: `${BASE}/investment/west-pune-growth-corridor`, lastModified: now, changeFrequency: 'monthly', priority: 0.82 },
     { url: `${BASE}/investment/nri-plot-guide`, lastModified: now, changeFrequency: 'monthly', priority: 0.82 },
     
-    // ─── Blog (Topical Authority & K Raheja Viva Bungalow Plots Focus) ──────
+    // ─── Blog & Content Hub ────────────────────────────────────────────────
     { url: `${BASE}/blog`, lastModified: now, changeFrequency: 'weekly', priority: 0.90 },
     { url: `${BASE}/blog/k-raheja-viva-bungalow-plots-buying-guide-2025`, lastModified: now, changeFrequency: 'weekly', priority: 0.92 },
     { url: `${BASE}/blog/why-invest-in-k-raheja-viva-na-bungalow-plots-pirangut`, lastModified: now, changeFrequency: 'weekly', priority: 0.92 },
@@ -72,6 +75,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.80,
   }));
 
+  const featurePages: MetadataRoute.Sitemap = [
+    'gated-community', 'with-clubhouse-access', 'near-hinjawadi-it-park',
+  ].map(slug => ({
+    url: `${BASE}/plots/features/${slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.80,
+  }));
+
+  const pirangutCategoryPages: MetadataRoute.Sitemap = [
+    'schools', 'hospitals', 'restaurants', 'connectivity',
+  ].map(slug => ({
+    url: `${BASE}/pirangut/${slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.80,
+  }));
+
   const comparePages: MetadataRoute.Sitemap = comparisonPages.map(p => ({
     url: `${BASE}/compare/${p.slug}`,
     lastModified: now,
@@ -84,6 +105,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...locationPages,
     ...plotSizePages,
     ...orientationPages,
+    ...featurePages,
+    ...pirangutCategoryPages,
     ...comparePages,
   ];
 }
+
