@@ -1,0 +1,34 @@
+name: Search Engine Programmatic Indexing Workflow
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    # Run daily at 00:00 UTC to maintain high crawl frequency
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  ping-search-engines:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Wait for Vercel Deployment to Settle
+        run: sleep 30
+
+      - name: Trigger IndexNow Instant Indexing Protocol
+        run: |
+          echo "🚀 Triggering IndexNow API for Instant URL Indexing..."
+          curl -s -X GET "https://www.krahejacorpviva.com/api/indexnow"
+
+      - name: Trigger All Search Engine Pings & Sitemap Verification
+        run: |
+          echo "🚀 Triggering Search Engine Sitemaps & Verification Pings..."
+          curl -s -X GET "https://www.krahejacorpviva.com/api/ping-all?secret=kraheja-viva-ping-2025"
+
+      - name: Output Indexing Status Report
+        run: |
+          echo "✅ Programmatic Indexing & Search Engine Workflow Executed Successfully."
