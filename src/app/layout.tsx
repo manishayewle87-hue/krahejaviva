@@ -26,6 +26,12 @@ export const metadata: Metadata = {
     'NA Plot Investment Pune', 'Pirangut NA Plots', 'K Raheja Corp',
   ].join(', '),
   metadataBase: new URL('https://www.krahejacorpviva.com'),
+  manifest: '/manifest.json',
+  icons: {
+    icon: '/images/viva/kraheja-official-logo-cropped.png',
+    shortcut: '/images/viva/kraheja-official-logo-cropped.png',
+    apple: '/images/viva/kraheja-official-logo-cropped.png',
+  },
   alternates: {
     canonical: 'https://www.krahejacorpviva.com',
     languages: {
