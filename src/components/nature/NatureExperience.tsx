@@ -6,7 +6,7 @@ import { Trees, Bird, Sun, Wind, ShieldCheck, Heart } from 'lucide-react';
 
 export const NatureExperience: React.FC = () => {
   return (
-    <div className="space-y-12">
+    <div className="space-y-8">
       
       {/* Intro */}
       <div className="text-center max-w-3xl mx-auto space-y-4">

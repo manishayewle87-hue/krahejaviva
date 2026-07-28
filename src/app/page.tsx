@@ -13,10 +13,13 @@ import { InvestmentCalculators } from '@/components/investment/InvestmentCalcula
 import { SignatureClubMicrosite } from '@/components/club/SignatureClubMicrosite';
 import { NatureExperience } from '@/components/nature/NatureExperience';
 import { LocationIntelligenceMap } from '@/components/location/LocationIntelligenceMap';
+import { ReviewSlider } from '@/components/reviews/ReviewSlider';
 import { BookSiteVisitModal } from '@/components/common/BookSiteVisitModal';
 import { DownloadBrochureModal } from '@/components/common/DownloadBrochureModal';
 import { YouTubeVideoModal } from '@/components/common/YouTubeVideoModal';
 import { LuxuryImage } from '@/components/common/LuxuryImage';
+import { SocialProof } from '@/components/common/SocialProof';
+import { PlotAvailabilityBadge } from '@/components/common/PlotAvailabilityBadge';
 import { VIVA_RERA_INFO } from '@/data/reraData';
 import {
   CustomCursor,
@@ -226,6 +229,13 @@ export default function HomePage() {
               </p>
             </FadeUp>
 
+            {/* Social Proof — Live Viewer Count */}
+            <FadeUp delay={0.68}>
+              <div className="mb-5">
+                <SocialProof />
+              </div>
+            </FadeUp>
+
             {/* Premium CTAs */}
             <FadeUp delay={0.74}>
               <div className="flex flex-wrap gap-3 mb-9">
@@ -277,6 +287,11 @@ export default function HomePage() {
                 </StaggerItem>
               ))}
             </StaggerContainer>
+
+            {/* Plot Availability Badge */}
+            <FadeUp delay={0.8}>
+              <PlotAvailabilityBadge />
+            </FadeUp>
 
           </div>
         </div>
@@ -487,6 +502,11 @@ export default function HomePage() {
         <LocationIntelligenceMap />
       </section>
 
+      {/* SECTION 8.5: REVIEWS */}
+      <section className="w-full bg-[#FAF8F5]">
+        <ReviewSlider />
+      </section>
+
       {/* SECTION 9: MAHARERA TRUST & DISCLOSURE */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="glass-panel-gold rounded-3xl p-6 sm:p-8 border border-[#C5A059]/40 text-center space-y-4 shadow-xl">
@@ -536,6 +556,133 @@ export default function HomePage() {
           </div>
         </div>
       )}
+
+      {/* SECTION 10: FREQUENTLY ASKED QUESTIONS */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 py-8">
+        <div className="text-center space-y-2">
+          <span className="text-xs font-bold text-[#C5A059] uppercase tracking-[0.25em]">HAVE QUESTIONS?</span>
+          <h2 className="font-serif text-3xl sm:text-4xl text-[#122A23] font-bold">Frequently Asked Questions</h2>
+        </div>
+        
+        <div className="space-y-4">
+          {[
+            {
+              q: "What is the location of K Raheja Corp Viva?",
+              a: "K Raheja Corp Viva is located in Pirangut, West Pune, beautifully nestled in the pristine Sahyadri foothills, just 12 minutes away from Chandani Chowk."
+            },
+            {
+              q: "What types of properties are available in Phase 1?",
+              a: "Phase 1 offers a curated selection of NA Villa Plots, ranging from 400 Sq Yds to 1,200+ Sq Yds, including Forest Facing, Hill Crest, and Grand Estate collections."
+            },
+            {
+              q: "Are the land titles clear and is the project RERA approved?",
+              a: "Yes, the project has 100% Non-Agricultural (NA) clear titles and is fully sanctioned by MahaRERA and PMRDA. It is also pre-approved for home loans by leading banks."
+            },
+            {
+              q: "What amenities are included in the estate?",
+              a: "The estate features 40+ world-class amenities, including a 20,000 Sq Ft Signature Clubhouse, a 25m infinity pool, sports lawns, indoor lounges, and extensive nature trails."
+            },
+            {
+              q: "Is there a dedicated green zone within the project?",
+              a: "Absolutely. The 100+ acre luxury estate boasts over 6,500 native trees and supports more than 60 bird species, providing an authentic ecological living experience."
+            },
+            {
+              q: "Can I customize my villa design?",
+              a: "While we provide comprehensive Villa Inspiration guidelines and templates to maintain the aesthetic integrity of the estate, buyers have the flexibility to design their dream homes within those parameters."
+            },
+            {
+              q: "How far is the project from major IT hubs in Pune?",
+              a: "K Raheja Corp Viva is strategically located in West Pune, offering excellent connectivity to major IT parks in Hinjawadi and Baner, typically within a 30-40 minute drive."
+            },
+            {
+              q: "How can I schedule a site visit?",
+              a: "You can schedule a private site visit by clicking on the 'Book Private Tour' button, using our sticky CTA bar, or reaching out via our WhatsApp widget for instant assistance."
+            }
+          ].map((faq, idx) => (
+            <div key={idx} className="bg-white rounded-xl p-6 border border-[#C5A059]/20 shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-[#122A23] font-bold text-lg mb-2">{faq.q}</h3>
+              <p className="text-[#5A6E67] text-sm leading-relaxed">{faq.a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* JSON-LD for FAQPage */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is the location of K Raheja Corp Viva?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "K Raheja Corp Viva is located in Pirangut, West Pune, beautifully nestled in the pristine Sahyadri foothills, just 12 minutes away from Chandani Chowk."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What types of properties are available in Phase 1?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Phase 1 offers a curated selection of NA Villa Plots, ranging from 400 Sq Yds to 1,200+ Sq Yds, including Forest Facing, Hill Crest, and Grand Estate collections."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Are the land titles clear and is the project RERA approved?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, the project has 100% Non-Agricultural (NA) clear titles and is fully sanctioned by MahaRERA and PMRDA. It is also pre-approved for home loans by leading banks."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What amenities are included in the estate?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The estate features 40+ world-class amenities, including a 20,000 Sq Ft Signature Clubhouse, a 25m infinity pool, sports lawns, indoor lounges, and extensive nature trails."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is there a dedicated green zone within the project?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Absolutely. The 100+ acre luxury estate boasts over 6,500 native trees and supports more than 60 bird species, providing an authentic ecological living experience."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I customize my villa design?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "While we provide comprehensive Villa Inspiration guidelines and templates to maintain the aesthetic integrity of the estate, buyers have the flexibility to design their dream homes within those parameters."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How far is the project from major IT hubs in Pune?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "K Raheja Corp Viva is strategically located in West Pune, offering excellent connectivity to major IT parks in Hinjawadi and Baner, typically within a 30-40 minute drive."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How can I schedule a site visit?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "You can schedule a private site visit by clicking on the 'Book Private Tour' button, using our sticky CTA bar, or reaching out via our WhatsApp widget for instant assistance."
+                }
+              }
+            ]
+          })
+        }}
+      />
 
       {/* Global Modals */}
       <BookSiteVisitModal 

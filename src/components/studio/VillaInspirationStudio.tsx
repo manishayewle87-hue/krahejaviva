@@ -18,7 +18,7 @@ export const VillaInspirationStudio: React.FC<StudioProps> = ({ onBookConsultati
   const estimatedConstructionCostCr = ((customBuiltUpSqFt * selectedConcept.estimatedCostPerSqFt) / 10000000).toFixed(2);
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-8">
       
       {/* Hero Intro */}
       <div className="text-center max-w-3xl mx-auto space-y-4">

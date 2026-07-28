@@ -1,0 +1,50 @@
+{
+  "name": "K Raheja Corp Viva",
+  "short_name": "Viva Pune",
+  "description": "Luxury NA villa plots in Pirangut, West Pune. K Raheja Corp flagship project.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#122A23",
+  "theme_color": "#122A23",
+  "orientation": "portrait-primary",
+  "categories": ["real estate", "property", "investment"],
+  "lang": "en-IN",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/viva/viva-panoramic-aerial.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg",
+      "label": "K Raheja Corp Viva — Luxury Estate Aerial View"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "View Masterplan",
+      "short_name": "Masterplan",
+      "description": "Explore the GIS masterplan",
+      "url": "/masterplan",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Book Site Visit",
+      "short_name": "Book Visit",
+      "description": "Schedule a private estate tour",
+      "url": "/?book=visit",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

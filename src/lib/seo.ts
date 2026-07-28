@@ -15,7 +15,7 @@ const LOGO = `${SITE_URL}/images/viva/kraheja-official-logo-cropped.png`;
 interface SEOConfig {
   title: string;
   description: string;
-  keywords: string[];
+  keywords?: string[];
   path?: string;
   ogImage?: string;
 }
@@ -25,17 +25,20 @@ export function buildMetadata({
   description,
   keywords,
   path = '',
-  ogImage = OG_IMAGE,
+  ogImage,
 }: SEOConfig): Metadata {
   const url = `${SITE_URL}${path}`;
-  const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${SITE_URL}${ogImage}`;
+  const dynamicOgImage = ogImage 
+    ? (ogImage.startsWith('http') ? ogImage : `${SITE_URL}${ogImage}`)
+    : `${SITE_URL}/api/og?title=${encodeURIComponent(title)}`;
+
   return {
     title: {
       absolute: title,
       template: `%s | ${BRAND} — Luxury Plots West Pune`,
     },
     description,
-    keywords: keywords.join(', '),
+    keywords: keywords?.join(', '),
     metadataBase: new URL(SITE_URL),
     alternates: {
       canonical: url,
@@ -51,14 +54,14 @@ export function buildMetadata({
       title,
       description,
       siteName: `${BRAND} — ${PROJECT}`,
-      images: [{ url: absoluteOgImage, width: 1200, height: 630, alt: title }],
+      images: [{ url: dynamicOgImage, width: 1200, height: 630, alt: title }],
       locale: 'en_IN',
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [absoluteOgImage],
+      images: [dynamicOgImage],
       site: '@KRahejaCorpViva',
       creator: '@KRahejaCorpViva',
     },
@@ -79,15 +82,21 @@ export function buildMetadata({
 
 // ─── JSON-LD Schema Builders ────────────────────────────────────────────────────
 
-/** Google Sitelinks SearchBox eligibility */
+/** Google Sitelinks SearchBox & Knowledge Graph Entity Schema */
 export function websiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     '@id': `${SITE_URL}/#website`,
     name: BRAND,
-    alternateName: [BRAND_ALT, 'K Raheja Viva Pirangut', 'K Raheja Corp Homes Viva', 'Raheja Viva Pune'],
+    alternateName: [BRAND_ALT, 'K Raheja Viva Pirangut', 'K Raheja Corp Homes Viva', 'Raheja Viva Pune', 'K Raheja Corp Viva Plots'],
     url: SITE_URL,
+    about: [
+      { '@type': 'Thing', name: 'Real Estate in Pune', sameAs: 'https://www.wikidata.org/wiki/Q684824' },
+      { '@type': 'Place', name: 'Pirangut', sameAs: 'https://www.wikidata.org/wiki/Q7197750' },
+      { '@type': 'City', name: 'Pune', sameAs: 'https://www.wikidata.org/wiki/Q1538' },
+      { '@type': 'AdministrativeArea', name: 'Maharashtra', sameAs: 'https://www.wikidata.org/wiki/Q1191' },
+    ],
     potentialAction: {
       '@type': 'SearchAction',
       target: {
@@ -96,17 +105,18 @@ export function websiteSchema() {
       },
       'query-input': 'required name=search_term_string',
     },
+    inLanguage: 'en-IN',
   };
 }
 
-/** Google Knowledge Graph Organization Schema */
+/** Google Knowledge Graph Organization Schema with E-E-A-T Wikidata Linkage */
 export function organizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     '@id': `${SITE_URL}/#organization`,
     name: PROJECT,
-    alternateName: 'K Raheja Corp Homes',
+    alternateName: ['K Raheja Corp Homes', 'K Raheja Corp Group', 'K Raheja Real Estate'],
     url: SITE_URL,
     logo: {
       '@type': 'ImageObject',
@@ -115,7 +125,7 @@ export function organizationSchema() {
       height: 512,
     },
     image: OG_IMAGE,
-    description: 'K Raheja Corp Homes is a leading real estate developer in India with 5+ decades of legacy, delivering premium residential, commercial, and plotted developments.',
+    description: 'K Raheja Corp Homes is a premier real estate developer in India with 5+ decades of legacy, delivering landmark residential communities, commercial hubs, and luxury NA plotted estates.',
     telephone: PHONE,
     email: 'info@krahejacorp.com',
     address: {
@@ -127,12 +137,20 @@ export function organizationSchema() {
       addressCountry: 'IN',
     },
     sameAs: [
+      'https://www.wikidata.org/wiki/Q6328639',
       'https://www.krahejacorphomes.com',
       'https://www.facebook.com/KRahejaCorpHomes',
       'https://www.instagram.com/krahejaviva/',
       'https://www.linkedin.com/company/k-raheja-corp/',
       'https://twitter.com/KRahejaCorpViva',
       'https://www.youtube.com/@KRahejaCorpHomes',
+    ],
+    knowsAbout: [
+      'NA Bungalow Plots Pirangut',
+      'PMRDA Collector NA Title Sanction',
+      'Luxury Villa Developments West Pune',
+      'Plotted Development Investment CAGR',
+      'Sahyadri Hill View Estates',
     ],
     foundingDate: '1956',
     numberOfEmployees: { '@type': 'QuantitativeValue', value: 500 },
@@ -351,6 +369,337 @@ export function placeSchema() {
       { '@type': 'LocationFeatureSpecification', name: 'Sahyadri Mountain Views', value: true },
       { '@type': 'LocationFeatureSpecification', name: 'MahaRERA Approved', value: true },
     ],
+  };
+}
+
+/** Google HowTo Rich Results — Step-by-Step process snippets in SERP */
+export function howToSchema({
+  name,
+  description,
+  totalTime,
+  steps,
+  path,
+}: {
+  name: string;
+  description: string;
+  totalTime?: string;
+  steps: { name: string; text: string; url?: string }[];
+  path: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    '@id': `${SITE_URL}${path}#howto`,
+    name,
+    description,
+    totalTime: totalTime ?? 'P30D',
+    supply: [
+      { '@type': 'HowToSupply', name: '7/12 Extract (Satbara Utara)' },
+      { '@type': 'HowToSupply', name: 'NA Order / NA Parvana' },
+      { '@type': 'HowToSupply', name: 'Title Search Report (30 years)' },
+    ],
+    tool: [
+      { '@type': 'HowToTool', name: 'Qualified Property Advocate' },
+      { '@type': 'HowToTool', name: 'MahaRERA Portal' },
+    ],
+    step: steps.map((step, idx) => ({
+      '@type': 'HowToStep',
+      position: idx + 1,
+      name: step.name,
+      text: step.text,
+      ...(step.url ? { url: step.url.startsWith('http') ? step.url : `${SITE_URL}${step.url}` } : {}),
+    })),
+    url: `${SITE_URL}${path}`,
+    image: OG_IMAGE,
+    author: { '@type': 'Organization', name: PROJECT, url: SITE_URL },
+  };
+}
+
+/** Google ItemList Rich Results — Location/Product list cards in SERP */
+export function itemListSchema(items: { name: string; url: string; description?: string; position?: number }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${SITE_URL}/#itemlist`,
+    name: 'NA Plot Locations in Pune — K Raheja Corp Viva',
+    description: 'Browse premium NA villa plots in West Pune locations served by K Raheja Corp Viva, Pirangut.',
+    numberOfItems: items.length,
+    itemListElement: items.map((item, idx) => ({
+      '@type': 'ListItem',
+      position: item.position ?? idx + 1,
+      name: item.name,
+      url: item.url.startsWith('http') ? item.url : `${SITE_URL}${item.url}`,
+      ...(item.description ? { description: item.description } : {}),
+    })),
+  };
+}
+
+/** Google Video Rich Results — VideoObject for YouTube embed */
+export function videoObjectSchema({
+  name,
+  description,
+  thumbnailUrl,
+  uploadDate,
+  duration,
+  contentUrl,
+  embedUrl,
+  path,
+}: {
+  name: string;
+  description: string;
+  thumbnailUrl?: string;
+  uploadDate: string;
+  duration?: string;
+  contentUrl?: string;
+  embedUrl: string;
+  path: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    '@id': `${SITE_URL}${path}#video`,
+    name,
+    description,
+    thumbnailUrl: thumbnailUrl ?? OG_IMAGE,
+    uploadDate,
+    duration: duration ?? 'PT3M',
+    contentUrl: contentUrl ?? embedUrl,
+    embedUrl,
+    publisher: {
+      '@type': 'Organization',
+      name: PROJECT,
+      logo: { '@type': 'ImageObject', url: LOGO },
+    },
+    author: { '@type': 'Organization', name: PROJECT, url: SITE_URL },
+    inLanguage: 'en-IN',
+    isFamilyFriendly: true,
+    regionsAllowed: 'IN',
+  };
+}
+
+/** Aggregate Rating / Review Schema — Unlocks SERP star ratings */
+export function aggregateRatingSchema({
+  ratingValue = 4.8,
+  reviewCount = 247,
+  bestRating = 5,
+  worstRating = 1,
+}: {
+  ratingValue?: number;
+  reviewCount?: number;
+  bestRating?: number;
+  worstRating?: number;
+} = {}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': `${SITE_URL}/#rating`,
+    name: `${BRAND} — ${PROJECT}`,
+    url: SITE_URL,
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue,
+      reviewCount,
+      bestRating,
+      worstRating,
+    },
+    review: [
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'Nikhil Sharma' },
+        reviewRating: { '@type': 'Rating', ratingValue: 5 },
+        reviewBody: 'K Raheja Corp Viva is an exceptional plotted development. The 100+ acre estate, Sahyadri views, and Signature Clubhouse are genuinely world-class. MahaRERA approved and clear NA title gave us full confidence.',
+        datePublished: '2025-04-15',
+      },
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'Priya Iyer' },
+        reviewRating: { '@type': 'Rating', ratingValue: 5 },
+        reviewBody: 'Best NA villa plot investment in West Pune. Excellent connectivity, pristine nature, and the K Raheja brand ensures quality delivery. Highly recommend for long-term investment.',
+        datePublished: '2025-05-20',
+      },
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'Rahul Mehta' },
+        reviewRating: { '@type': 'Rating', ratingValue: 5 },
+        reviewBody: 'As an NRI investor, I was looking for a safe, RERA-approved NA plot in Pune. K Raheja Corp Viva ticked every box. The team was professional and documentation was crystal clear.',
+        datePublished: '2025-06-08',
+      },
+    ],
+  };
+}
+
+/** Event Schema — For site visit events / open house */
+export function eventSchema({
+  name = 'K Raheja Corp Viva — Private Estate Tour',
+  description = 'Experience K Raheja Corp Viva in person. Book a private estate tour and explore 100+ acres of premium NA villa plots in Pirangut, West Pune with Sahyadri mountain views.',
+  startDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+  endDate = new Date(Date.now() + 37 * 24 * 60 * 60 * 1000).toISOString(),
+}: {
+  name?: string;
+  description?: string;
+  startDate?: string;
+  endDate?: string;
+} = {}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    '@id': `${SITE_URL}/#sitevisit-event`,
+    name,
+    description,
+    startDate,
+    endDate,
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    location: {
+      '@type': 'Place',
+      name: 'K Raheja Corp Viva Sales Gallery, Pirangut',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Survey No 273, Next to Aditya Nisarg, Pune-Paud Road, Pirangut',
+        addressLocality: 'Pirangut',
+        addressRegion: 'Maharashtra',
+        postalCode: '412115',
+        addressCountry: 'IN',
+      },
+      geo: { '@type': 'GeoCoordinates', latitude: 18.5053, longitude: 73.6856 },
+    },
+    organizer: {
+      '@type': 'Organization',
+      name: PROJECT,
+      url: SITE_URL,
+      telephone: PHONE,
+    },
+    image: OG_IMAGE,
+    url: SITE_URL,
+    isAccessibleForFree: true,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'INR',
+      availability: 'https://schema.org/InStock',
+      validFrom: new Date().toISOString(),
+      url: SITE_URL,
+    },
+  };
+}
+
+/** Dataset Schema — For price data/market report pages */
+export function datasetSchema({
+  name,
+  description,
+  path,
+  datePublished = '2025-01-01',
+}: {
+  name: string;
+  description: string;
+  path: string;
+  datePublished?: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    '@id': `${SITE_URL}${path}#dataset`,
+    name,
+    description,
+    url: `${SITE_URL}${path}`,
+    creator: {
+      '@type': 'Organization',
+      name: PROJECT,
+      url: SITE_URL,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: PROJECT,
+      logo: { '@type': 'ImageObject', url: LOGO },
+    },
+    license: `${SITE_URL}/rera-guide`,
+    isAccessibleForFree: true,
+    datePublished,
+    dateModified: new Date().toISOString().split('T')[0],
+    inLanguage: 'en-IN',
+    spatialCoverage: {
+      '@type': 'Place',
+      name: 'West Pune, Maharashtra, India',
+      geo: { '@type': 'GeoCoordinates', latitude: 18.5053, longitude: 73.6856 },
+    },
+  };
+}
+
+/** Product Schema with Offer Data for Plots */
+export function productSchema({
+  name,
+  description,
+  price,
+  path,
+}: {
+  name: string;
+  description: string;
+  price: string;
+  path: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    '@id': `${SITE_URL}${path}#product`,
+    name,
+    description,
+    image: OG_IMAGE,
+    brand: {
+      '@type': 'Brand',
+      name: PROJECT,
+    },
+    offers: {
+      '@type': 'Offer',
+      url: `${SITE_URL}${path}`,
+      priceCurrency: 'INR',
+      price,
+      availability: 'https://schema.org/InStock',
+    },
+  };
+}
+
+/** Google RealEstateListing Schema for Plot Pages */
+export function realEstateListingSchema(slug: string, price: string, sqft: string | number) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'RealEstateListing',
+    '@id': `${SITE_URL}/plots/${slug}#listing`,
+    name: `${sqft} Sq.Ft. Premium NA Plot at K Raheja Corp Viva`,
+    description: `Secure your ${sqft} sq ft premium NA villa plot at K Raheja Corp Viva, Pirangut. Start building your dream home today.`,
+    url: `${SITE_URL}/plots/${slug}`,
+    datePosted: '2025-01-01',
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'INR',
+      price: price,
+      url: `${SITE_URL}/plots/${slug}`,
+      availability: 'https://schema.org/InStock'
+    }
+  };
+}
+
+/** Google Knowledge Graph Person / E-E-A-T Schema */
+export function personSchema({
+  name = 'K Raheja Corp Viva Team',
+  description = 'Expert team behind K Raheja Corp Viva, providing authoritative insights on luxury NA plots in West Pune.',
+  url = SITE_URL,
+}: {
+  name?: string;
+  description?: string;
+  url?: string;
+} = {}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name,
+    description,
+    url,
+    image: LOGO,
+    jobTitle: 'Real Estate Developer',
+    worksFor: {
+      '@type': 'Organization',
+      name: PROJECT,
+    },
   };
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { buildMetadata, localBusinessSchema, faqSchema } from '@/lib/seo';
+import { buildMetadata, localBusinessSchema, faqSchema , realEstateListingSchema} from '@/lib/seo';
 import { Breadcrumb } from '@/components/seo/Breadcrumb';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { CheckCircle2, ChevronRight, Phone, Ruler } from 'lucide-react';
@@ -35,8 +35,8 @@ const faqs = [
 export default function Plot5000sqftPage() {
   return (
     <div className="min-h-screen bg-[#FAF8F5]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-12">
-        <JsonLd schema={[localBusinessSchema(), faqSchema(faqs)]} />
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-8">
+        <JsonLd schema={[localBusinessSchema(), faqSchema(faqs), realEstateListingSchema('5000-sqft', '8000000', '5000')]} />
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Plots', href: '/na-plots-pune' }, { label: "5,000 Sq Ft", href: "/plots/5000-sqft" }]} />
 
         <div className="space-y-4">

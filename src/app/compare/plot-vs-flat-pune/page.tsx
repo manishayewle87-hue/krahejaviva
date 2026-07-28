@@ -24,7 +24,7 @@ const faqs = [
 export default function ComparisonplotvsflatpunePage() {
   return (
     <div className="min-h-screen bg-[#FAF8F5]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-8">
         <JsonLd schema={[localBusinessSchema(), faqSchema(faqs)]} />
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Compare', href: '/compare/villa-plot-vs-apartment' }, { label: 'Comparison', href: "/compare/plot-vs-flat-pune" }]} />
 

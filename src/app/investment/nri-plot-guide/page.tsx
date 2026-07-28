@@ -43,7 +43,7 @@ const faqs = [
 export default function InvestmentArticlenriplotguidePage() {
   return (
     <div className="min-h-screen bg-[#FAF8F5]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-8">
         <JsonLd schema={[localBusinessSchema(), articleSchema({ title: "NRI Plot Investment Pune 2025 | FEMA Guide & K Raheja Viva NA Plots", description: "Complete NRI guide to buying NA plots in Pune. FEMA regulations, eligible property types, NRE/NRO accounts, tax implications, repatriation rules, and POA process.", path: "/investment/nri-plot-guide", datePublished: '2025-01-15' }), faqSchema(faqs)]} />
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Investment', href: '/investment' }, { label: 'Article', href: "/investment/nri-plot-guide" }]} />
 

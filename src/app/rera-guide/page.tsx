@@ -20,7 +20,7 @@ export default function RERAGuidePage() {
   ];
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12 bg-[#FAF8F5]">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 bg-[#FAF8F5]">
       <JsonLd schema={[localBusinessSchema(), breadcrumbSchema(breadcrumbItems)]} />
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'MahaRERA & Legal Guide', href: '/rera-guide' }]} />
       

@@ -39,7 +39,7 @@ const faqs = [
 export default function InvestmentArticlewestpunegrowthcorridorPage() {
   return (
     <div className="min-h-screen bg-[#FAF8F5]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-8">
         <JsonLd schema={[localBusinessSchema(), articleSchema({ title: "West Pune Growth Corridor 2025 | Pirangut Bavdhan Hinjawadi Investment Guide", description: "Why West Pune is Pune's fastest-growing real estate corridor in 2025. Western Ring Road, Metro, Hinjawadi Phase III and K Raheja Viva Pirangut investment analysis.", path: "/investment/west-pune-growth-corridor", datePublished: '2025-01-15' }), faqSchema(faqs)]} />
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Investment', href: '/investment' }, { label: 'Article', href: "/investment/west-pune-growth-corridor" }]} />
 

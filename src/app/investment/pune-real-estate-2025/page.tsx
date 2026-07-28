@@ -39,7 +39,7 @@ const faqs = [
 export default function InvestmentArticlepunerealestate2025Page() {
   return (
     <div className="min-h-screen bg-[#FAF8F5]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-8">
         <JsonLd schema={[localBusinessSchema(), articleSchema({ title: "Pune Real Estate Market 2025 | Property Trends & Investment Guide", description: "Comprehensive Pune real estate market report 2025. Price trends, top investment corridors, infrastructure impact, and expert outlook for West Pune plots.", path: "/investment/pune-real-estate-2025", datePublished: '2025-01-15' }), faqSchema(faqs)]} />
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Investment', href: '/investment' }, { label: 'Article', href: "/investment/pune-real-estate-2025" }]} />
 

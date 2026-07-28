@@ -6,6 +6,11 @@ import { Footer } from '@/components/layout/Footer';
 import { BookSiteVisitModal } from '@/components/common/BookSiteVisitModal';
 import { DownloadBrochureModal } from '@/components/common/DownloadBrochureModal';
 import { AIPropertyConcierge } from '@/components/ai/AIPropertyConcierge';
+import { WhatsAppWidget } from '@/components/common/WhatsAppWidget';
+import { PropertyChatbot } from '@/components/ai/PropertyChatbot';
+import { ExitIntentPopup } from '@/components/common/ExitIntentPopup';
+import { PriceAlertBanner } from '@/components/common/PriceAlertBanner';
+import { StickyCtaBar } from '@/components/common/StickyCtaBar';
 
 export function ClientLayout({ children }: { children: React.ReactNode }) {
   const [isAIConciergeOpen, setIsAIConciergeOpen] = useState(false);
@@ -47,6 +52,11 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
           window.location.href = `/masterplan?plot=${plotId}`;
         }}
       />
+      <WhatsAppWidget />
+      <PropertyChatbot />
+      <ExitIntentPopup />
+      <PriceAlertBanner />
+      <StickyCtaBar />
     </>
   );
 }

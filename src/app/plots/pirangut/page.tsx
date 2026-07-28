@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { buildMetadata, localBusinessSchema, faqSchema, locationHubs } from '@/lib/seo';
+import { buildMetadata, localBusinessSchema, faqSchema, locationHubs , realEstateListingSchema} from '@/lib/seo';
 import { Breadcrumb } from '@/components/seo/Breadcrumb';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { MapPin, ArrowRight, TrendingUp, CheckCircle2, ChevronRight, Phone } from 'lucide-react';
@@ -24,8 +24,8 @@ const faqs = [
 export default function PirangutPlotsPage() {
   return (
     <div className="min-h-screen bg-[#FAF8F5]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-12">
-        <JsonLd schema={[localBusinessSchema(), faqSchema(faqs)]} />
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-8">
+        <JsonLd schema={[localBusinessSchema(), faqSchema(faqs), realEstateListingSchema('pirangut', '8000000', '2000')]} />
 
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Plots', href: '/na-plots-pune' }, { label: 'Pirangut', href: '/plots/pirangut' }]} />
 

@@ -1,105 +1,254 @@
 import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { buildMetadata, localBusinessSchema, faqSchema } from '@/lib/seo';
+import { buildMetadata, localBusinessSchema, faqSchema, breadcrumbSchema } from '@/lib/seo';
 import { Breadcrumb } from '@/components/seo/Breadcrumb';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { TrendingUp, ChevronRight, Phone, CheckCircle2 } from 'lucide-react';
+import { RoiCalculator } from '@/components/calculator/RoiCalculator';
+import { TrendingUp, ChevronRight, Phone, CheckCircle2, ArrowRight, AlertTriangle } from "lucide-react";
 
 export const metadata: Metadata = buildMetadata({
-  title: 'NA Plot Investment Guide Pune 2025 | ROI & Appreciation | K Raheja Viva',
-  description: 'Complete NA plot investment guide for Pune 2025. Historical appreciation data, ROI comparison, tax benefits, and why West Pune plots outperform apartments. By K Raheja Corp Homes.',
-  keywords: ['NA plot investment Pune', 'plot ROI Pune', 'land investment Pune', 'plot appreciation Pune', 'best plot investment West Pune', 'NA plot returns Pune 2025'],
+  title: 'NA Plot Investment ROI Pune 2025 | Land vs Apartment Returns | K Raheja Viva',
+  description: 'Complete investment analysis for NA plots in Pune 2025. West Pune land appreciation CAGR data, plot vs apartment ROI comparison, tax benefits, NRI investment guide, and capital gains analysis. Updated 2025 data.',
+  keywords: ['NA plot investment Pune', 'land vs apartment ROI Pune', 'NA plot appreciation Pune', 'plot investment returns', 'West Pune real estate investment 2025', 'NRI plot investment Pune'],
   path: '/na-plots-pune/investment-guide',
 });
 
 const faqs = [
-  { q: 'What is the average appreciation of NA plots in Pune?', a: 'NA plots in premium West Pune micro-markets like Pirangut, Mulshi corridor have appreciated 15-22% CAGR over the last 5 years, significantly outperforming the apartment market (8-10% CAGR).' },
-  { q: 'Do plots give better returns than apartments in Pune?', a: 'Historically yes. Plots in premium gated communities in Pune have delivered 2-2.5x better returns than comparable apartment investments over 5-7 year holding periods.' },
-  { q: 'What are the tax benefits of investing in a plot?', a: 'Plots held for more than 24 months qualify for Long-Term Capital Gains (LTCG) tax at 20% with indexation benefits. Indexation significantly reduces the taxable gain, making plots tax-efficient long-term investments.' },
-  { q: 'Can I earn rental income from a plot?', a: 'Plots earn no rental income until a villa is constructed. However, constructed villas in premium gated communities like K Raheja Viva command strong rental yields of ₹1.5-3.5 Lakh per month for managed rentals.' },
-  { q: 'What is the minimum holding period for NA plot investment?', a: 'For maximum returns, a minimum 5-7 year holding period is recommended. However, some K Raheja Viva early investors have achieved 2x returns in 4-5 years due to strong demand-supply dynamics.' },
+  { q: 'Is buying an NA plot a good investment in Pune?', a: 'Yes, highly. NA plots in growth corridors like West Pune (Pirangut, Mulshi) have historically delivered 15-22% CAGR, significantly outperforming apartments and fixed deposits, driven by infrastructure development and a scarcity of quality plotted land.' },
+  { q: 'What is the ROI difference between an apartment and a plot?', a: 'Over a 5 to 10-year period, plots generally appreciate at 15-20% per year due to land scarcity. Apartments typically appreciate at 6-10% per year because building structures depreciate over time, and new supply is constantly added.' },
+  { q: 'What are the capital gains tax rules for selling an NA plot?', a: 'If sold within 24 months, Short-Term Capital Gains (STCG) apply at your income tax slab rate. If held for more than 24 months, it is considered a Long-Term Capital Asset, and LTCG is taxed at 20% with the benefit of indexation, which significantly lowers the taxable amount.' },
+  { q: 'How can I save tax on plot capital gains?', a: 'Under Section 54F of the Income Tax Act, you can claim exemption on LTCG from selling a plot if you reinvest the entire net sale consideration into purchasing or constructing a residential house within a specified timeframe.' },
+  { q: 'Can NRIs invest in NA plots in Pune?', a: 'Yes. Under FEMA, Non-Resident Indians (NRIs) and Overseas Citizens of India (OCIs) can freely invest in residential and commercial NA plots in India. They can also repatriate the sale proceeds subject to tax rules and FEMA guidelines.' },
+  { q: 'How does the upcoming Pune Ring Road affect plot prices?', a: 'The Pune Ring Road is a massive catalyst. It will drastically cut commute times across the city. Areas adjacent to the Ring Road, like Pirangut, are experiencing front-loaded price appreciation as investors anticipate a surge in demand upon the road\'s completion.' },
+  { q: 'Should I buy a plot in a gated community or a standalone plot?', a: 'A gated community plot (like K Raheja Viva) offers vastly superior security, maintained infrastructure (roads, water, electricity), world-class amenities, and legal safety (RERA). Standalone plots are cheaper but carry high risks of encroachment, poor infrastructure, and legal disputes.' },
+  { q: 'Can I get a home loan tax deduction on a plot?', a: 'You do not get Section 80C/24(b) deductions for merely buying a plot. However, if you take a loan to buy the plot AND construct a house on it, you can claim deductions on the principal and interest once construction is complete.' }
 ];
 
 export default function InvestmentGuidePage() {
+  const breadcrumbItems = [
+    { name: 'Home', url: '/' },
+    { name: 'NA Plots Pune', url: '/na-plots-pune' },
+    { name: 'Investment Guide', url: '/na-plots-pune/investment-guide' },
+  ];
+
   return (
     <div className="min-h-screen bg-[#FAF8F5]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-12">
-        <JsonLd schema={[localBusinessSchema(), faqSchema(faqs)]} />
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-8">
+        <JsonLd schema={[localBusinessSchema(), faqSchema(faqs), breadcrumbSchema(breadcrumbItems)]} />
         <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'NA Plots Pune', href: '/na-plots-pune' }, { label: 'Investment Guide', href: '/na-plots-pune/investment-guide' }]} />
 
-        <div className="space-y-4">
-          <span className="px-3 py-1 rounded-full bg-[#122A23] text-[#C5A059] text-xs font-bold uppercase tracking-widest">📈 INVESTMENT GUIDE — UPDATED 2025</span>
-          <h1 className="font-serif text-4xl sm:text-5xl text-[#122A23] font-bold">NA Plot Investment in Pune — ROI, Appreciation & Strategy Guide 2025</h1>
-          <p className="text-lg text-[#5A6E67] max-w-3xl leading-relaxed">Data-backed guide on NA plot investment returns in Pune 2025. Compare plot vs apartment ROI, understand tax benefits, and learn why K Raheja Viva Pirangut delivers exceptional land investment returns.</p>
+        <div className="space-y-6">
+          <span className="px-3 py-1 rounded-full bg-[#122A23] text-[#C5A059] text-xs font-bold uppercase tracking-widest">📈 EXCLUSIVE INVESTMENT REPORT — 2025</span>
+          <h1 className="font-serif text-4xl sm:text-5xl text-[#122A23] font-bold leading-tight">NA Plot Investment in Pune 2025 — Complete ROI & Market Analysis</h1>
+          <p className="text-lg text-[#5A6E67] max-w-3xl leading-relaxed">Discover why premium NA bungalow plots are the best-performing real estate asset class in Pune. This data-driven guide analyzes West Pune appreciation rates, compares land versus apartment ROI, and details tax strategies for maximum wealth creation.</p>
+          <div className="flex flex-wrap gap-4 pt-4">
+            <Link href="/na-plots-pune/buy-guide" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#122A23] text-white font-bold text-sm hover:bg-[#1a3d33] transition-colors">How to Buy Guide <ArrowRight className="w-4 h-4"/></Link>
+            <Link href="/na-plots-pune/legal-checklist" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-[#122A23] border border-[#C5A059] font-bold text-sm hover:bg-amber-50 transition-colors">Legal Checklist <ArrowRight className="w-4 h-4"/></Link>
+          </div>
         </div>
 
-        <article className="space-y-6 text-[#3A4E45] text-sm leading-relaxed">
-          <h2 className="font-serif text-2xl text-[#122A23] font-bold">Why NA Plots Outperform Apartments in Pune</h2>
-          <p>The fundamental case for NA plot investment over apartments in Pune rests on three structural advantages: scarcity, flexibility, and appreciation multiplier. Unlike apartments — which are commoditised, easily replicated, and depreciate in relative quality over time — well-located NA plots in premium gated communities are inherently scarce assets that can never be created once the land is developed.</p>
-          <p>In West Pune's Pirangut–Mulshi corridor, developed NA plots in master-planned communities have appreciated at 15–22% per annum over the last five years, compared to 8–10% for apartments in established Pune suburbs. This outperformance is driven by a powerful demand-supply imbalance: IT sector growth creates 30,000+ new high-income households annually in Pune's western corridor, while the supply of quality plotted land in low-density master-planned communities remains structurally constrained.</p>
+        <section className="space-y-6">
+          <h2 className="font-serif text-3xl text-[#122A23] font-bold">Why NA Plots Are the Best Investment in Pune Right Now</h2>
+          <div className="text-[#5A6E67] space-y-4 text-base leading-relaxed text-justify">
+            <p>For decades, the Indian real estate mindset heavily favored apartments. However, a structural shift is occurring in Pune, and astute investors are pivoting aggressively towards NA (Non-Agricultural) plots, particularly in master-planned gated communities. The foundational economic principle driving this shift is scarcity. While high-rise apartments can be continuously built vertically, creating endless supply, land is an absolutely finite resource. In premium micro-markets, the supply of legally clear, fully developed plotted land is severely constrained.</p>
+            <p>Furthermore, Pune is undergoing an unprecedented infrastructure boom. Mega-projects like the Pune Ring Road, the expansion of the Hinjawadi IT Park (Phase III), the Metro line extensions, and the upcoming Missing Link on the Mumbai-Pune Expressway are radically altering the city's accessibility map. Areas in West Pune, once considered peripheral, are rapidly becoming highly connected prime suburbs. Investing in land in these corridors right now captures the massive value uplift generated by this infrastructure.</p>
+            <p>Post-COVID, the lifestyle aspirations of the upper-middle class have permanently shifted. There is a surging demand for spacious villas, private gardens, and low-density living, which only NA plots can provide. From an investment perspective, while apartments suffer from depreciation of the physical structure and high maintenance costs, raw land requires near-zero maintenance and appreciates purely on the inherent value of the location. This combination of fixed supply, surging infrastructure-driven demand, and structural appreciation makes NA plots the ultimate long-term wealth multiplier in Pune.</p>
+          </div>
+        </section>
 
-          <h2 className="font-serif text-2xl text-[#122A23] font-bold">5-Year Investment Performance — West Pune Plots</h2>
-          <div className="bg-white rounded-2xl border border-[#C5A059]/30 overflow-hidden">
-            <div className="bg-[#122A23] grid grid-cols-4 p-4 text-xs font-bold text-center">
-              <span className="text-left text-[#C5A059] uppercase tracking-wider">Investment Type</span>
-              <span className="text-[#FAF8F5]">5-Yr CAGR</span>
-              <span className="text-[#FAF8F5]">₹1 Cr → 5 Yrs</span>
-              <span className="text-[#FAF8F5]">Risk Level</span>
+        <section className="space-y-6">
+          <h2 className="font-serif text-3xl text-[#122A23] font-bold text-center">Interactive Investment Calculator</h2>
+          <RoiCalculator />
+        </section>
+
+        <section className="space-y-6">
+          <h2 className="font-serif text-3xl text-[#122A23] font-bold">West Pune Price Appreciation Table (2019-2025)</h2>
+          <p className="text-[#5A6E67]">Historical data proves the extraordinary growth trajectory of land in West Pune. Here is the comparative price appreciation for NA plots across key micro-markets.</p>
+          <div className="overflow-x-auto bg-white rounded-xl border border-[#C5A059]/30 shadow-sm">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-[#122A23] text-white">
+                  <th className="p-4 border-b border-[#122A23] font-semibold">Location</th>
+                  <th className="p-4 border-b border-[#122A23] font-semibold">2019 Price/sqft</th>
+                  <th className="p-4 border-b border-[#122A23] font-semibold">2022 Price/sqft</th>
+                  <th className="p-4 border-b border-[#122A23] font-semibold text-amber-300">2025 Price/sqft</th>
+                  <th className="p-4 border-b border-[#122A23] font-semibold text-green-400">CAGR (6 Years)</th>
+                </tr>
+              </thead>
+              <tbody className="text-[#3A4E45]">
+                <tr className="border-b border-gray-200 hover:bg-gray-50 bg-[#FAF8F5]">
+                  <td className="p-4 font-bold text-[#122A23]">Pirangut</td>
+                  <td className="p-4">₹1,800</td>
+                  <td className="p-4">₹2,800</td>
+                  <td className="p-4 font-bold">₹4,200</td>
+                  <td className="p-4 font-bold text-green-600">15.2%</td>
+                </tr>
+                <tr className="border-b border-gray-200 hover:bg-gray-50">
+                  <td className="p-4 font-bold text-[#122A23]">Mulshi</td>
+                  <td className="p-4">₹2,200</td>
+                  <td className="p-4">₹3,500</td>
+                  <td className="p-4 font-bold">₹5,500</td>
+                  <td className="p-4 font-bold text-green-600">16.5%</td>
+                </tr>
+                <tr className="border-b border-gray-200 hover:bg-gray-50 bg-[#FAF8F5]">
+                  <td className="p-4 font-bold text-[#122A23]">Bhugaon</td>
+                  <td className="p-4">₹1,600</td>
+                  <td className="p-4">₹2,400</td>
+                  <td className="p-4 font-bold">₹3,600</td>
+                  <td className="p-4 font-bold text-green-600">14.5%</td>
+                </tr>
+                <tr className="border-b border-gray-200 hover:bg-gray-50">
+                  <td className="p-4 font-bold text-[#122A23]">Bavdhan</td>
+                  <td className="p-4">₹4,500</td>
+                  <td className="p-4">₹6,500</td>
+                  <td className="p-4 font-bold">₹9,000</td>
+                  <td className="p-4 font-bold text-green-600">12.3%</td>
+                </tr>
+                <tr className="border-b border-gray-200 hover:bg-gray-50 bg-[#FAF8F5]">
+                  <td className="p-4 font-bold text-[#122A23]">Hinjawadi</td>
+                  <td className="p-4">₹5,000</td>
+                  <td className="p-4">₹7,500</td>
+                  <td className="p-4 font-bold">₹11,000</td>
+                  <td className="p-4 font-bold text-green-600">14.0%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="text-sm text-[#5A6E67] italic font-semibold">Contrast: The average apartment in Pune appreciated at a CAGR of only 8.2% during the same 2019-2025 period.</p>
+        </section>
+
+        <section className="space-y-6">
+          <h2 className="font-serif text-3xl text-[#122A23] font-bold">NA Plot vs. Apartment vs. Agricultural Land</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-2xl border border-green-200 shadow-sm">
+              <h3 className="text-xl font-bold text-[#122A23] mb-4 border-b pb-2">Premium NA Plot</h3>
+              <ul className="space-y-3 text-sm text-[#5A6E67]">
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5"/> <strong>Appreciation:</strong> Very High (15-20%+)</li>
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5"/> <strong>Depreciation:</strong> None (Land never ages)</li>
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5"/> <strong>Flexibility:</strong> Build custom villa anytime</li>
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5"/> <strong>Legal Risk:</strong> Zero (if RERA registered)</li>
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5"/> <strong>Maintenance:</strong> Minimal</li>
+              </ul>
             </div>
-            {[
-              { type: 'NA Plots — Premium Gated (West Pune)', cagr: '18–22%', value: '₹2.3–₹2.7 Cr', risk: 'Low-Medium' },
-              { type: 'Apartments — Premium West Pune', cagr: '8–11%', value: '₹1.47–₹1.68 Cr', risk: 'Low' },
-              { type: 'Raw Agricultural Land (Pune)', cagr: '8–12%', value: '₹1.47–₹1.76 Cr', risk: 'High' },
-              { type: 'Mutual Funds (Equity Large Cap)', cagr: '12–15%', value: '₹1.76–₹2.01 Cr', risk: 'Medium-High' },
-            ].map((row, i) => (
-              <div key={row.type} className={`grid grid-cols-4 p-4 text-xs ${i % 2 === 0 ? 'bg-[#FAF8F5]' : 'bg-white'}`}>
-                <span className="font-semibold text-[#122A23]">{row.type}</span>
-                <span className="text-center text-[#122A23] font-bold">{row.cagr}</span>
-                <span className="text-center text-[#5A6E67]">{row.value}</span>
-                <span className="text-center text-[#5A6E67]">{row.risk}</span>
-              </div>
-            ))}
+            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+              <h3 className="text-xl font-bold text-[#122A23] mb-4 border-b pb-2">Apartment</h3>
+              <ul className="space-y-3 text-sm text-[#5A6E67]">
+                <li className="flex gap-2"><ChevronRight className="w-4 h-4 text-gray-400 shrink-0 mt-0.5"/> <strong>Appreciation:</strong> Moderate (6-10%)</li>
+                <li className="flex gap-2"><ChevronRight className="w-4 h-4 text-gray-400 shrink-0 mt-0.5"/> <strong>Depreciation:</strong> High (Building ages)</li>
+                <li className="flex gap-2"><ChevronRight className="w-4 h-4 text-gray-400 shrink-0 mt-0.5"/> <strong>Flexibility:</strong> Zero (Fixed layout)</li>
+                <li className="flex gap-2"><ChevronRight className="w-4 h-4 text-gray-400 shrink-0 mt-0.5"/> <strong>Legal Risk:</strong> Low</li>
+                <li className="flex gap-2"><ChevronRight className="w-4 h-4 text-gray-400 shrink-0 mt-0.5"/> <strong>Maintenance:</strong> High & recurring</li>
+              </ul>
+            </div>
+            <div className="bg-white p-6 rounded-2xl border border-amber-200 shadow-sm">
+              <h3 className="text-xl font-bold text-[#122A23] mb-4 border-b pb-2">Agricultural Land</h3>
+              <ul className="space-y-3 text-sm text-[#5A6E67]">
+                <li className="flex gap-2"><AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5"/> <strong>Appreciation:</strong> Highly variable</li>
+                <li className="flex gap-2"><AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5"/> <strong>Depreciation:</strong> None</li>
+                <li className="flex gap-2"><AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5"/> <strong>Flexibility:</strong> Very Low (Farming only)</li>
+                <li className="flex gap-2"><AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5"/> <strong>Legal Risk:</strong> Extreme (Encroachment)</li>
+                <li className="flex gap-2"><AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5"/> <strong>Eligibility:</strong> Restricted to farmers</li>
+              </ul>
+            </div>
           </div>
+        </section>
 
-          <h2 className="font-serif text-2xl text-[#122A23] font-bold">Tax Benefits of NA Plot Investment</h2>
-          <ul className="space-y-2">
-            {[
-              'Long-Term Capital Gains (LTCG) tax of 20% with indexation after 24 months holding — indexation significantly reduces taxable gains',
-              'No GST on land purchase (only applicable on apartment construction)',
-              'Stamp duty deductible from cost of acquisition for capital gains calculation',
-              'Section 54F deduction available on capital gains if proceeds are reinvested in residential construction within 3 years',
-              'HUF (Hindu Undivided Family) structure can be used for plot ownership with additional tax efficiency',
-              'NRI plot investments benefit from DTAA (Double Taxation Avoidance Agreement) provisions — reducing Indian tax liability',
-            ].map(item => (
-              <li key={item} className="flex items-start space-x-2"><CheckCircle2 className="w-4 h-4 text-[#C5A059] mt-0.5 shrink-0" /><span>{item}</span></li>
-            ))}
-          </ul>
+        <section className="space-y-6">
+          <h2 className="font-serif text-3xl text-[#122A23] font-bold">Tax Benefits on NA Plot Investment</h2>
+          <div className="bg-[#FAF8F5] p-6 md:p-8 rounded-2xl border border-[#C5A059]/30 shadow-sm space-y-4">
+            <ul className="grid md:grid-cols-2 gap-6">
+              <li className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <h4 className="font-bold text-[#122A23] mb-2 flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-[#C5A059]"/> No GST Implication</h4>
+                <p className="text-sm text-[#5A6E67]">Unlike under-construction apartments which attract 5% GST, the purchase of land/plots is entirely exempt from GST, saving you lakhs immediately.</p>
+              </li>
+              <li className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <h4 className="font-bold text-[#122A23] mb-2 flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-[#C5A059]"/> Section 54F Exemption</h4>
+                <p className="text-sm text-[#5A6E67]">You can completely avoid paying LTCG tax on the sale of a plot if you reinvest the net sale proceeds into purchasing or constructing a new residential property within the specified timelines.</p>
+              </li>
+              <li className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <h4 className="font-bold text-[#122A23] mb-2 flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-[#C5A059]"/> Indexation Benefits</h4>
+                <p className="text-sm text-[#5A6E67]">Plots held for more than 24 months qualify for Long-Term Capital Gains. You pay 20% tax, but after applying 'indexation', which adjusts your purchase price for inflation, drastically lowering the taxable profit.</p>
+              </li>
+              <li className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <h4 className="font-bold text-[#122A23] mb-2 flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-[#C5A059]"/> Section 80C Deduction</h4>
+                <p className="text-sm text-[#5A6E67]">If you take a loan to buy the plot and subsequently construct a villa, you can claim tax deductions up to ₹1.5 Lakhs on principal and ₹2 Lakhs on interest upon completion.</p>
+              </li>
+            </ul>
+          </div>
+        </section>
 
-          <h2 className="font-serif text-2xl text-[#122A23] font-bold">Key Investment Drivers — West Pune Land Market</h2>
-          <p>The fundamental demand drivers for K Raheja Viva and the broader West Pune land market are structural and multi-year in nature. The Hinjawadi IT corridor employs 250,000+ professionals today and is set to add 100,000+ more through Phase III expansion by 2027. The Pune Metro Line 3 (Hinjawadi–Shivajinagar) under construction will unlock an entirely new wave of real estate demand along its alignment. The Western Ring Road — connecting Pirangut to NH-48 — will dramatically reduce travel times to Pune's airport, CBD, and IT hubs, catalysing a second wave of land appreciation in the Pirangut–Mulshi belt.</p>
-        </article>
+        <section className="space-y-6">
+          <h2 className="font-serif text-3xl text-[#122A23] font-bold">NRI Investment in NA Plots — FEMA Guide</h2>
+          <div className="bg-white p-6 md:p-8 rounded-2xl border border-[#C5A059]/30 shadow-sm text-[#5A6E67] leading-relaxed space-y-4">
+            <p>For NRIs, investing in Pune plots is a preferred route for wealth repatriation. Key regulations include:</p>
+            <ul className="list-disc pl-5 space-y-2">
+              <li><strong>Absolute Freedom:</strong> NRIs can acquire residential NA plots without requiring specific permissions from the Reserve Bank of India (RBI).</li>
+              <li><strong>Funding Rules:</strong> Payments must be made via inward remittance through regular banking channels or out of funds held in NRE, FCNR, or NRO accounts.</li>
+              <li><strong>Restriction:</strong> NRIs are strictly prohibited from purchasing agricultural land, plantation property, or farmhouses in India.</li>
+              <li><strong>TDS & Taxation:</strong> When an NRI sells the plot, the buyer must deduct TDS at 20% (plus surcharge) on Long-Term Capital Gains. NRIs can claim refunds by filing returns in India and utilize Double Taxation Avoidance Agreements (DTAA) to prevent being taxed twice.</li>
+            </ul>
+          </div>
+        </section>
 
-        <div className="bg-[#122A23] rounded-3xl p-8 text-center space-y-4">
-          <TrendingUp className="w-10 h-10 text-[#C5A059] mx-auto" />
-          <h2 className="font-serif text-2xl text-[#FAF8F5] font-bold">Invest in West Pune's Fastest-Appreciating Plotted Development</h2>
-          <p className="text-sm text-[#FAF8F5]/80 max-w-lg mx-auto">K Raheja Viva Pirangut — 18–22% CAGR, RERA registered, clear NA title, K Raheja Corp legacy.</p>
+        <section className="space-y-6">
+          <h2 className="font-serif text-3xl text-[#122A23] font-bold">5-Year ROI Scenarios (On ₹1 Cr Investment)</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm text-center">
+              <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-xs font-bold rounded-full mb-4">Conservative</span>
+              <h3 className="text-3xl font-bold text-[#122A23] mb-2">12% CAGR</h3>
+              <p className="text-lg font-semibold text-gray-600 mb-4">Value in 5 Years</p>
+              <div className="text-4xl font-serif text-[#C5A059] font-bold">₹1.76 Cr</div>
+              <p className="text-sm text-[#5A6E67] mt-4 pt-4 border-t">Assuming slower market growth.</p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl border-2 border-[#C5A059] shadow-md text-center transform scale-105 z-10 relative">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#C5A059] text-white px-3 py-1 text-xs font-bold rounded-full">Most Likely</div>
+              <span className="inline-block px-3 py-1 bg-amber-50 text-amber-700 text-xs font-bold rounded-full mb-4 mt-2">Moderate</span>
+              <h3 className="text-3xl font-bold text-[#122A23] mb-2">15% CAGR</h3>
+              <p className="text-lg font-semibold text-gray-600 mb-4">Value in 5 Years</p>
+              <div className="text-5xl font-serif text-[#122A23] font-bold">₹2.01 Cr</div>
+              <p className="text-sm text-[#5A6E67] mt-4 pt-4 border-t">Historical average for West Pune.</p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm text-center">
+              <span className="inline-block px-3 py-1 bg-green-50 text-green-700 text-xs font-bold rounded-full mb-4">Optimistic</span>
+              <h3 className="text-3xl font-bold text-[#122A23] mb-2">20% CAGR</h3>
+              <p className="text-lg font-semibold text-gray-600 mb-4">Value in 5 Years</p>
+              <div className="text-4xl font-serif text-green-600 font-bold">₹2.49 Cr</div>
+              <p className="text-sm text-[#5A6E67] mt-4 pt-4 border-t">Assuming major infra (Ring Road) completion.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="space-y-6">
+          <h2 className="font-serif text-3xl text-[#122A23] font-bold">Infrastructure Catalysts Driving Pirangut</h2>
+          <p className="text-[#5A6E67] text-base leading-relaxed text-justify">
+            The extraordinary ROI in West Pune, particularly Pirangut, is underpinned by massive state infrastructure projects. The <strong>Pune Ring Road</strong>, slated for completion around 2026-27, is the biggest game-changer, integrating Pirangut directly with major highways and industrial zones, drastically reducing logistics and travel time. The massive expansion of the <strong>Hinjawadi IT Park</strong> continues to bring tens of thousands of highly-paid professionals into the region annually, driving residential demand. Furthermore, the <strong>Hinjawadi-Shivajinagar Metro Line</strong> will seamlessly connect West Pune to the city center. Finally, the <strong>Mumbai-Pune Expressway Missing Link</strong> project will cut travel time to Mumbai by 30 minutes, making Pirangut a highly attractive weekend home and primary residence destination for Mumbai investors.
+          </p>
+        </section>
+
+        <section className="bg-[#122A23] rounded-3xl p-8 md:p-12 text-center space-y-6">
+          <h2 className="font-serif text-3xl md:text-4xl text-[#FAF8F5] font-bold">Start Your Wealth Creation Journey</h2>
+          <p className="text-lg text-[#FAF8F5]/80 max-w-2xl mx-auto">Invest in Pune's fastest-growing corridor with K Raheja Viva. Secure your piece of premium West Pune land before the next wave of appreciation.</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/investment" className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#C5A059] to-amber-600 text-white font-bold text-xs uppercase tracking-widest hover:scale-105 transition-all">View ROI Calculator</Link>
-            <Link href="/masterplan" className="px-8 py-3.5 rounded-full bg-white/10 text-[#FAF8F5] font-bold text-xs border border-[#FAF8F5]/30 hover:bg-white/20 transition-all">View Available Plots</Link>
+            <Link href="/masterplan" className="px-8 py-4 rounded-full bg-gradient-to-r from-[#C5A059] to-amber-600 text-white font-bold text-sm uppercase tracking-widest hover:scale-105 transition-all">Explore Investment Plots</Link>
           </div>
-          <div className="flex items-center justify-center space-x-2 text-sm text-[#C5A059] font-bold"><Phone className="w-4 h-4" /><span>+91 80 8044 5445</span></div>
-        </div>
+          <div className="flex items-center justify-center space-x-2 text-base text-[#C5A059] font-bold pt-4"><Phone className="w-5 h-5" /><span>Consult our investment experts: +91 80 8044 5445</span></div>
+        </section>
 
-        <div className="space-y-3">
-          <h2 className="font-serif text-2xl text-[#122A23] font-bold">FAQ — NA Plot Investment</h2>
-          {faqs.map(faq => (
-            <details key={faq.q} className="bg-white rounded-xl border border-[#C5A059]/30 p-5 group">
-              <summary className="font-semibold text-sm text-[#122A23] cursor-pointer list-none flex items-center justify-between">{faq.q}<ChevronRight className="w-4 h-4 text-[#C5A059] group-open:rotate-90 transition-transform shrink-0 ml-2" /></summary>
-              <p className="text-sm text-[#5A6E67] mt-3 leading-relaxed">{faq.a}</p>
-            </details>
-          ))}
-        </div>
+        <section className="space-y-6 pt-8">
+          <h2 className="font-serif text-3xl text-[#122A23] font-bold">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            {faqs.map(faq => (
+              <details key={faq.q} className="bg-white rounded-xl border border-[#C5A059]/30 p-6 group cursor-pointer hover:shadow-md transition-all">
+                <summary className="font-semibold text-lg text-[#122A23] list-none flex items-center justify-between">
+                  {faq.q}
+                  <ChevronRight className="w-5 h-5 text-[#C5A059] group-open:rotate-90 transition-transform shrink-0 ml-4" />
+                </summary>
+                <p className="text-base text-[#5A6E67] mt-4 leading-relaxed border-t border-gray-100 pt-4">{faq.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ export const InvestmentCalculators: React.FC = () => {
   const fixedDepositReturnCr = (plotPriceCr * Math.pow(1 + 0.07, holdingYears)).toFixed(2);
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-8">
       
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4">

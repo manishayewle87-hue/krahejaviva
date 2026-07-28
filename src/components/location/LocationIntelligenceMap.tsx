@@ -13,7 +13,7 @@ export const LocationIntelligenceMap: React.FC = () => {
   });
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-8">
 
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4">

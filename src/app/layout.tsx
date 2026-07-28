@@ -2,7 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { ClientLayout } from '@/components/layout/ClientLayout';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { websiteSchema, organizationSchema, localBusinessSchema, speakableSchema } from '@/lib/seo';
+import { websiteSchema, organizationSchema, localBusinessSchema, speakableSchema, aggregateRatingSchema, eventSchema, videoObjectSchema } from '@/lib/seo';
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 
 export const viewport: Viewport = {
   themeColor: '#122A23',
@@ -30,7 +31,12 @@ export const metadata: Metadata = {
     languages: {
       'en-IN': 'https://www.krahejacorpviva.com',
       'en-US': 'https://www.krahejacorpviva.com',
+      'hi': 'https://www.krahejacorpviva.com/hi',
+      'mr': 'https://www.krahejacorpviva.com/hi',
       'x-default': 'https://www.krahejacorpviva.com',
+    },
+    types: {
+      'application/rss+xml': 'https://www.krahejacorpviva.com/rss.xml',
     },
   },
   openGraph: {
@@ -66,6 +72,14 @@ export const metadata: Metadata = {
       'max-video-preview': -1,
     },
   },
+  verification: {
+    google: 'ahPfnhhz_unmAEMLFUhCaspu9aTN8gCKU-Um9RXZLdk',
+    other: {
+      'msvalidate.01': 'BING_VERIFICATION_CODE',
+      'yandex-verification': 'YANDEX_VERIFICATION_CODE',
+      'baidu-site-verification': 'BAIDU_VERIFICATION_CODE',
+    },
+  },
   other: {
     // ─── Geo Tags ────────────────────────────────
     'geo.region': 'IN-MH',
@@ -82,6 +96,7 @@ export const metadata: Metadata = {
     'DC.coverage': 'Pirangut, Pune, Maharashtra, India',
     'DC.rights': 'Copyright 2025 K Raheja Corp Homes. All rights reserved.',
     // ─── Global Search Engine Webmaster Verification ─────────────────────
+    'google-site-verification': 'ahPfnhhz_unmAEMLFUhCaspu9aTN8gCKU-Um9RXZLdk',
     'msvalidate.01': 'BING_VERIFICATION_CODE',
     'yandex-verification': 'YANDEX_VERIFICATION_CODE',
     'baidu-site-verification': 'BAIDU_VERIFICATION_CODE',
@@ -106,15 +121,43 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-IN" dir="ltr">
       <head>
-        {/* ─── Google Font Preloading ─────────────────────── */}
+        {/* ─── Google Site Verification (Search Console Hardened) ─── */}
+        <meta name="google-site-verification" content="ahPfnhhz_unmAEMLFUhCaspu9aTN8gCKU-Um9RXZLdk" />
+        {/* ─── Google Font & Resource Preloading — Core Web Vitals ─── */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.youtube.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap"
           rel="stylesheet"
         />
+        {/* ─── LCP Hero Image Preload — Core Web Vitals ─── */}
+        <link
+          rel="preload"
+          as="image"
+          href="/images/viva/hero-estate-aerial.jpg"
+          type="image/jpeg"
+        />
         {/* ─── Global JSON-LD Schema Stack ────────────────── */}
-        <JsonLd data={[websiteSchema(), organizationSchema(), localBusinessSchema(), speakableSchema('/')]} />
+        <JsonLd data={[
+          websiteSchema(),
+          organizationSchema(),
+          localBusinessSchema(),
+          speakableSchema('/'),
+          aggregateRatingSchema(),
+          eventSchema(),
+          videoObjectSchema({
+            name: 'K Raheja Corp Viva Pirangut — Project & Site Walkthrough',
+            description: 'Official site walkthrough of K Raheja Corp Viva — a 100+ acre luxury NA plotted estate in Pirangut, West Pune. Explore the Signature Clubhouse, villa enclaves, Sahyadri views and 40+ amenities.',
+            uploadDate: '2024-12-01',
+            duration: 'PT3M45S',
+            embedUrl: 'https://www.youtube.com/embed/tMMs4PBNG-4',
+            contentUrl: 'https://www.youtube.com/watch?v=tMMs4PBNG-4',
+            path: '/',
+          }),
+        ]} />
       </head>
       <body
         className="bg-[#FAF8F5] text-[#122A23] antialiased selection:bg-[#C5A059] selection:text-[#FAF8F5]"
@@ -122,6 +165,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       >
         <ClientLayout>{children}</ClientLayout>
       </body>
+      <GoogleAnalytics gaId="G-XXXXXXXXXX" />
+      <GoogleTagManager gtmId="GTM-XXXXXXX" />
     </html>
   );
 }

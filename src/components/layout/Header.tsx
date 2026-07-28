@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Compass, Bot, Menu, X, ChevronDown, Sparkles, MapPin, TrendingUp, ShieldCheck } from 'lucide-react';
+import { Compass, Bot, Menu, X, ChevronDown, Sparkles, MapPin, TrendingUp, ShieldCheck, Home } from 'lucide-react';
 import { KRahejaLogo } from '@/components/common/KRahejaLogo';
 
 interface HeaderProps {
@@ -42,6 +42,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAIConcierge, onOpenSiteVis
           {/* Streamlined Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-7 text-xs font-semibold tracking-wider text-[#122A23] uppercase">
             
+            <Link href="/raheja-viva-na-bungalow-plots" className="flex items-center space-x-1 hover:text-[#C5A059] text-[#C5A059] transition-colors py-1 font-bold">
+              <Home className="w-3.5 h-3.5 text-[#C5A059]" />
+              <span>VIVA PLOTS</span>
+            </Link>
+
             <Link href="/masterplan" className="flex items-center space-x-1.5 hover:text-[#C5A059] transition-colors py-1">
               <Compass className="w-3.5 h-3.5 text-[#C5A059]" />
               <span>MASTERPLAN</span>
@@ -60,6 +65,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAIConcierge, onOpenSiteVis
 
               {activeMenu === 'collections' && (
                 <div className="absolute top-full left-0 w-60 bg-white/95 backdrop-blur-xl rounded-xl py-2 border border-[#C5A059]/30 shadow-xl animate-in fade-in slide-in-from-top-2 duration-150">
+                  <Link href="/raheja-viva-na-bungalow-plots" className="block px-4 py-2.5 text-xs text-[#122A23] hover:bg-[#FAF8F5] hover:text-[#C5A059] font-bold border-b border-[#C5A059]/10">
+                    🏛️ Raheja Viva NA Bungalow Plots
+                  </Link>
                   <Link href="/masterplan?filter=Forest Facing" className="block px-4 py-2.5 text-xs text-[#122A23] hover:bg-[#FAF8F5] hover:text-[#C5A059] font-semibold border-b border-[#C5A059]/10">
                     🌲 Forest Facing Plots
                   </Link>
@@ -97,17 +105,21 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAIConcierge, onOpenSiteVis
 
               {activeMenu === 'more' && (
                 <div className="absolute top-full left-0 w-52 bg-white/95 backdrop-blur-xl rounded-xl py-2 border border-[#C5A059]/30 shadow-xl animate-in fade-in slide-in-from-top-2 duration-150">
-                  <Link href="/location" className="flex items-center space-x-2 px-4 py-2 text-xs text-[#122A23] hover:bg-[#FAF8F5] hover:text-[#C5A059] font-semibold border-b border-[#C5A059]/10">
+                  <Link href="/raheja-viva-na-bungalow-plots/pirangut-pune" className="flex items-center space-x-2 px-4 py-2 text-xs text-[#122A23] hover:bg-[#FAF8F5] hover:text-[#C5A059] font-semibold border-b border-[#C5A059]/10">
                     <MapPin className="w-3.5 h-3.5 text-[#C5A059]" />
-                    <span>Location & Travel</span>
+                    <span>Pirangut Location</span>
                   </Link>
-                  <Link href="/investment" className="flex items-center space-x-2 px-4 py-2 text-xs text-[#122A23] hover:bg-[#FAF8F5] hover:text-[#C5A059] font-semibold border-b border-[#C5A059]/10">
+                  <Link href="/raheja-viva-na-bungalow-plots/price-investment" className="flex items-center space-x-2 px-4 py-2 text-xs text-[#122A23] hover:bg-[#FAF8F5] hover:text-[#C5A059] font-semibold border-b border-[#C5A059]/10">
                     <TrendingUp className="w-3.5 h-3.5 text-[#C5A059]" />
-                    <span>Investment & ROI</span>
+                    <span>Price & Investment ROI</span>
                   </Link>
-                  <Link href="/rera-guide" className="flex items-center space-x-2 px-4 py-2 text-xs text-[#122A23] hover:bg-[#FAF8F5] hover:text-[#C5A059] font-semibold">
+                  <Link href="/raheja-viva-na-bungalow-plots/legal-rera-sanction" className="flex items-center space-x-2 px-4 py-2 text-xs text-[#122A23] hover:bg-[#FAF8F5] hover:text-[#C5A059] font-semibold border-b border-[#C5A059]/10">
                     <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />
-                    <span>MahaRERA & Legal</span>
+                    <span>Legal 7/12 & RERA</span>
+                  </Link>
+                  <Link href="/blog" className="flex items-center space-x-2 px-4 py-2 text-xs text-[#122A23] hover:bg-[#FAF8F5] hover:text-[#C5A059] font-semibold">
+                    <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
+                    <span>Blogs & Articles</span>
                   </Link>
                 </div>
               )}
@@ -158,12 +170,16 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAIConcierge, onOpenSiteVis
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-[#FAF8F5] border-b border-[#C5A059]/30 px-6 py-5 space-y-3 shadow-xl animate-in slide-in-from-top-4 duration-200 text-sm font-bold text-[#122A23] uppercase tracking-wider">
+          <Link href="/raheja-viva-na-bungalow-plots" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-2 py-2 border-b border-[#C5A059]/10 text-[#C5A059]">
+            <Home className="w-4 h-4 text-[#C5A059]" />
+            <span>RAHEJA VIVA BUNGALOW PLOTS</span>
+          </Link>
           <Link href="/masterplan" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-2 py-2 border-b border-[#C5A059]/10">
             <Compass className="w-4 h-4 text-[#C5A059]" />
             <span>MASTERPLAN</span>
           </Link>
-          <Link href="/masterplan?filter=Forest Facing" onClick={() => setMobileMenuOpen(false)} className="block py-2 border-b border-[#C5A059]/10">
-            PLOTS
+          <Link href="/raheja-viva-na-bungalow-plots/sizes-masterplan" onClick={() => setMobileMenuOpen(false)} className="block py-2 border-b border-[#C5A059]/10">
+            PLOT SIZES
           </Link>
           <Link href="/villa-studio" onClick={() => setMobileMenuOpen(false)} className="block py-2 border-b border-[#C5A059]/10">
             VILLA STUDIO
@@ -171,11 +187,14 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAIConcierge, onOpenSiteVis
           <Link href="/club" onClick={() => setMobileMenuOpen(false)} className="block py-2 border-b border-[#C5A059]/10">
             SIGNATURE CLUB
           </Link>
-          <Link href="/location" onClick={() => setMobileMenuOpen(false)} className="block py-2 border-b border-[#C5A059]/10">
-            LOCATION
+          <Link href="/raheja-viva-na-bungalow-plots/pirangut-pune" onClick={() => setMobileMenuOpen(false)} className="block py-2 border-b border-[#C5A059]/10">
+            PIRANGUT LOCATION
           </Link>
-          <Link href="/investment" onClick={() => setMobileMenuOpen(false)} className="block py-2 border-b border-[#C5A059]/10">
-            INVESTMENT & ROI
+          <Link href="/raheja-viva-na-bungalow-plots/price-investment" onClick={() => setMobileMenuOpen(false)} className="block py-2 border-b border-[#C5A059]/10">
+            PRICING & ROI
+          </Link>
+          <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="block py-2 border-b border-[#C5A059]/10">
+            BLOGS & ARTICLES
           </Link>
 
           <button
