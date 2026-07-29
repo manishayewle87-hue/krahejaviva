@@ -6,32 +6,33 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/', '/admin/'],
+        disallow: ['/api/private/', '/_next/static/development/'],
       },
       {
-        userAgent: ['Googlebot', 'Googlebot-Mobile', 'Googlebot-Image', 'Googlebot-Video', 'Google-InspectionTool'],
+        userAgent: [
+          'Googlebot', 'Googlebot-Mobile', 'Googlebot-Image', 'Googlebot-Video',
+          'Google-InspectionTool', 'Google-Extended', 'GoogleOther', 'Storebot-Google',
+        ],
         allow: '/',
-        disallow: ['/api/'],
       },
       {
         userAgent: ['Bingbot', 'msnbot', 'BingPreview'],
         allow: '/',
-        disallow: ['/api/'],
       },
       {
-        userAgent: ['GPTBot', 'ChatGPT-User', 'PerplexityBot', 'Claude-Web', 'anthropic-ai', 'Google-Extended'],
+        userAgent: ['Yandex', 'YandexBot', 'YandexMobileBot', 'YandexImages'],
         allow: '/',
-        disallow: ['/api/'],
       },
       {
-        userAgent: 'YandexBot',
+        userAgent: ['Applebot', 'DuckDuckBot', 'Baiduspider', 'Slurp', 'Sogou web spider', 'Yeti', 'SeznamBot'],
         allow: '/',
-        disallow: ['/api/'],
       },
       {
-        userAgent: 'Baiduspider',
+        userAgent: [
+          'GPTBot', 'ChatGPT-User', 'PerplexityBot', 'Claude-Web', 'ClaudeBot',
+          'anthropic-ai', 'Bytespider', 'CCBot', 'cohere-ai', 'FacebookBot',
+        ],
         allow: '/',
-        disallow: ['/api/'],
       },
     ],
     sitemap: [
@@ -43,4 +44,3 @@ export default function robots(): MetadataRoute.Robots {
     host: 'https://www.krahejacorpviva.com',
   };
 }
-

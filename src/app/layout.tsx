@@ -37,6 +37,11 @@ export const metadata: Metadata = {
     languages: {
       'en-IN': 'https://www.krahejacorpviva.com',
       'en-US': 'https://www.krahejacorpviva.com',
+      'en-GB': 'https://www.krahejacorpviva.com',
+      'en-AE': 'https://www.krahejacorpviva.com',
+      'en-CA': 'https://www.krahejacorpviva.com',
+      'en-AU': 'https://www.krahejacorpviva.com',
+      'en-SG': 'https://www.krahejacorpviva.com',
       'hi': 'https://www.krahejacorpviva.com/hi',
       'mr': 'https://www.krahejacorpviva.com/hi',
       'x-default': 'https://www.krahejacorpviva.com',
