@@ -22,6 +22,7 @@ import { SocialProof } from '@/components/common/SocialProof';
 import { PlotAvailabilityBadge } from '@/components/common/PlotAvailabilityBadge';
 import { SiloClusterLinker } from '@/components/seo/SiloClusterLinker';
 import { ThemedKeywordDirectory } from '@/components/seo/ThemedKeywordDirectory';
+import { StrategicClusterHub } from '@/components/seo/StrategicClusterHub';
 import { VIVA_RERA_INFO } from '@/data/reraData';
 import {
   CustomCursor,
@@ -685,6 +686,9 @@ export default function HomePage() {
           })
         }}
       />
+
+      {/* Google-Compliant 12-Cluster Strategic E-E-A-T Knowledge Hub */}
+      <StrategicClusterHub />
 
       {/* Themed High-Intent Keyword Directory Injection */}
       <ThemedKeywordDirectory />
