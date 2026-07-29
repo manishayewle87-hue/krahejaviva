@@ -145,6 +145,22 @@ export function organizationSchema() {
       'https://twitter.com/KRahejaCorpViva',
       'https://www.youtube.com/@KRahejaCorpHomes',
     ],
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        telephone: '+91-8080-445-445',
+        contactType: 'sales',
+        areaServed: 'IN',
+        availableLanguage: ['English', 'Hindi', 'Marathi'],
+      },
+      {
+        '@type': 'ContactPoint',
+        telephone: '+91-20-6700-0000',
+        contactType: 'customer service',
+        areaServed: 'IN',
+        availableLanguage: ['English', 'Hindi', 'Marathi'],
+      },
+    ],
     knowsAbout: [
       'NA Bungalow Plots Pirangut',
       'PMRDA Collector NA Title Sanction',
