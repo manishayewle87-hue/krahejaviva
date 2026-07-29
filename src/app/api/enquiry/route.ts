@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 export async function GET() {
   return NextResponse.json({
     status: 'Active',
-    service: 'K Raheja Corp Viva Fail-Safe Lead Dispatch Engine',
+    service: 'K Raheja Corp Viva Lead Capture Engine',
     recipientEmail: 'propsmartrealty@gmail.com',
     nodemailerConfigured: Boolean(process.env.GMAIL_APP_PASSWORD || process.env.GMAIL_USER),
   });
@@ -89,65 +89,38 @@ export async function POST(request: Request) {
       </div>
     `;
 
-    let emailSent = false;
+    let smtpResult = null;
+    let smtpError = null;
 
-    // 1. Primary: Nodemailer via Gmail SMTP (If App Password is set in Vercel)
     if (pass) {
       try {
         const transporter = nodemailer.createTransport({
-          host: 'smtp.gmail.com',
-          port: 465,
-          secure: true,
+          service: 'gmail',
           auth: {
-            user,
-            pass,
+            user: user.trim(),
+            pass: pass.trim().replace(/\s+/g, ''), // Strip spaces from App Password if any
           },
         });
 
-        await transporter.sendMail({
-          from: `"K Raheja Viva Leads" <${user}>`,
+        smtpResult = await transporter.sendMail({
+          from: `"K Raheja Viva Leads" <${user.trim()}>`,
           to: recipient,
+          replyTo: email && email.includes('@') ? email : recipient,
           subject: `🔥 New Lead: ${name || 'Prospect'} (${phone || 'No Phone'}) — K Raheja Viva`,
           html: emailHtml,
         });
-        emailSent = true;
-        console.log('[NODEMAILER SUCCESS] Email sent via Gmail SMTP');
-      } catch (err) {
-        console.error('[NODEMAILER ERROR]', err);
-      }
-    }
 
-    // 2. Fail-Safe Backup: FormSubmit HTTP Webhook (Guaranteed Delivery to propsmartrealty@gmail.com)
-    try {
-      await fetch('https://formsubmit.co/ajax/propsmartrealty@gmail.com', {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          _subject: `🔥 New Lead: ${name || 'Prospect'} (${phone || 'No Phone'}) — K Raheja Viva`,
-          _template: 'table',
-          'Customer Name': name || 'N/A',
-          'Phone Number': phone || 'N/A',
-          'Email Address': email || 'N/A',
-          'Interested Plot Size': plotSize || 'N/A',
-          'Preferred Visit Date': date || 'N/A',
-          'Lead Form Source': source || 'Website Form',
-          'Message Details': message || 'N/A',
-          'Direct WhatsApp Link': `https://wa.me/91${phone ? phone.replace(/\D/g, '') : ''}`,
-        }),
-      });
-      emailSent = true;
-      console.log('[FORMSUBMIT SUCCESS] Backup lead notification dispatched');
-    } catch (err) {
-      console.error('[FORMSUBMIT BACKUP ERROR]', err);
+        console.log('[GMAIL SMTP SUCCESS]', smtpResult.messageId);
+      } catch (err: any) {
+        smtpError = err.message || String(err);
+        console.error('[GMAIL SMTP ERROR]', smtpError);
+      }
     }
 
     return NextResponse.json({
       success: true,
-      emailDispatched: emailSent,
-      message: 'Enquiry processed and dispatched to Propsmart Realty',
+      smtpResult: smtpResult ? { messageId: smtpResult.messageId, accepted: smtpResult.accepted } : null,
+      smtpError: smtpError,
       recipient: recipient,
       timestamp: new Date().toISOString(),
     });
