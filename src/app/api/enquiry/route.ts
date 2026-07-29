@@ -2,11 +2,41 @@ import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
 export async function GET() {
+  const user = (process.env.GMAIL_USER || process.env.EMAIL_USER || 'propsmartrealty@gmail.com').trim();
+  const pass = (
+    process.env.GMAIL_APP_PASSWORD ||
+    process.env.GMAIL_PASSWORD ||
+    process.env.EMAIL_PASSWORD ||
+    process.env.GMAIL_PASS ||
+    process.env.SMTP_PASSWORD ||
+    ''
+  ).trim().replace(/\s+/g, '');
+
+  let connectionStatus = 'Not Configured (Missing GMAIL_APP_PASSWORD)';
+  let verifyError = null;
+
+  if (pass) {
+    try {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: { user, pass },
+      });
+      await transporter.verify();
+      connectionStatus = 'Verified & Connected to Gmail SMTP';
+    } catch (err: any) {
+      connectionStatus = 'Failed to Connect to Gmail SMTP';
+      verifyError = err.message || String(err);
+    }
+  }
+
   return NextResponse.json({
     status: 'Active',
     service: 'K Raheja Corp Viva Lead Capture Engine',
     recipientEmail: 'propsmartrealty@gmail.com',
-    nodemailerConfigured: Boolean(process.env.GMAIL_APP_PASSWORD || process.env.GMAIL_USER),
+    smtpUser: user,
+    hasAppPassword: Boolean(pass),
+    connectionStatus,
+    verifyError,
   });
 }
 
@@ -16,12 +46,19 @@ export async function POST(request: Request) {
     const { name, email, phone, message, plotSize, source, date } = body;
 
     const recipient = 'propsmartrealty@gmail.com';
-    const user = process.env.GMAIL_USER || recipient;
-    const pass = process.env.GMAIL_APP_PASSWORD || process.env.GMAIL_PASS || process.env.EMAIL_PASSWORD;
+    const user = (process.env.GMAIL_USER || process.env.EMAIL_USER || recipient).trim();
+    const pass = (
+      process.env.GMAIL_APP_PASSWORD ||
+      process.env.GMAIL_PASSWORD ||
+      process.env.EMAIL_PASSWORD ||
+      process.env.GMAIL_PASS ||
+      process.env.SMTP_PASSWORD ||
+      ''
+    ).trim().replace(/\s+/g, '');
 
-    console.log(`[LEAD CAPTURED] Name: ${name} | Phone: ${phone} | Email: ${email} | Source: ${source}`);
+    console.log(`[LEAD RECEIVED] Name: ${name} | Phone: ${phone} | Email: ${email} | Source: ${source}`);
 
-    // Build K Raheja Viva Luxury HTML Lead Email
+    // Build Luxury K Raheja Viva HTML Email
     const emailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 2px solid #C5A059; border-radius: 12px; background-color: #FAF8F5;">
         
@@ -96,14 +133,11 @@ export async function POST(request: Request) {
       try {
         const transporter = nodemailer.createTransport({
           service: 'gmail',
-          auth: {
-            user: user.trim(),
-            pass: pass.trim().replace(/\s+/g, ''), // Strip spaces from App Password if any
-          },
+          auth: { user, pass },
         });
 
         smtpResult = await transporter.sendMail({
-          from: `"K Raheja Viva Leads" <${user.trim()}>`,
+          from: `"K Raheja Viva Leads" <${user}>`,
           to: recipient,
           replyTo: email && email.includes('@') ? email : recipient,
           subject: `🔥 New Lead: ${name || 'Prospect'} (${phone || 'No Phone'}) — K Raheja Viva`,
@@ -119,7 +153,8 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       success: true,
-      smtpResult: smtpResult ? { messageId: smtpResult.messageId, accepted: smtpResult.accepted } : null,
+      emailDispatched: Boolean(smtpResult),
+      smtpResult: smtpResult ? { messageId: smtpResult.messageId, response: smtpResult.response } : null,
       smtpError: smtpError,
       recipient: recipient,
       timestamp: new Date().toISOString(),
