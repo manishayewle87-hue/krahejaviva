@@ -21,6 +21,7 @@ import { LuxuryImage } from '@/components/common/LuxuryImage';
 import { SocialProof } from '@/components/common/SocialProof';
 import { PlotAvailabilityBadge } from '@/components/common/PlotAvailabilityBadge';
 import { SiloClusterLinker } from '@/components/seo/SiloClusterLinker';
+import { ThemedKeywordDirectory } from '@/components/seo/ThemedKeywordDirectory';
 import { VIVA_RERA_INFO } from '@/data/reraData';
 import {
   CustomCursor,
@@ -684,6 +685,9 @@ export default function HomePage() {
           })
         }}
       />
+
+      {/* Themed High-Intent Keyword Directory Injection */}
+      <ThemedKeywordDirectory />
 
       {/* Topic Silo Cluster Internal Link Graph */}
       <SiloClusterLinker currentSiloId="sizes" currentUrl="/" />

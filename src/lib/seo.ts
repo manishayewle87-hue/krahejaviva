@@ -784,3 +784,49 @@ export const comparisonPages = [
     keywords: ['plot vs flat pune', 'plot or apartment investment pune', 'land vs flat returns pune'],
   },
 ];
+
+// ─── Themed High-Intent Keyword Matrix ──────────────────────────────────────────
+
+export const THEMED_HIGH_INTENT_CLUSTERS = [
+  {
+    category: 'Brand & Flagship Authority',
+    keywords: [
+      { term: 'K Raheja Viva NA Bungalow Plots', url: '/raheja-viva-na-bungalow-plots' },
+      { term: 'K Raheja Viva Pirangut Pune', url: '/raheja-viva-na-bungalow-plots/pirangut-pune' },
+      { term: 'Raheja Viva Masterplan Layout', url: '/raheja-viva-na-bungalow-plots/sizes-masterplan' },
+      { term: 'K Raheja Corp Viva Price List', url: '/raheja-viva-na-bungalow-plots/price-investment' },
+      { term: 'MahaRERA P52100004980 Legal Clearance', url: '/raheja-viva-na-bungalow-plots/legal-rera-sanction' },
+    ],
+  },
+  {
+    category: 'Buyer Intent & Transactional',
+    keywords: [
+      { term: 'Buy NA Bungalow Plot in Pirangut Pune', url: '/na-plots-pune/buy-guide' },
+      { term: 'PMRDA Collector NA Approved Villa Plots Pune', url: '/na-plots-pune/na-conversion-guide' },
+      { term: 'Sanctioned Residential NA Plot for Sale West Pune', url: '/na-plots-pune' },
+      { term: 'Clear Title 7/12 Satbara NA Plot Pirangut', url: '/na-plots-pune/legal-checklist' },
+      { term: '2000 to 6000 sq ft Luxury Bungalow Plots Pune', url: '/plots/2000-sqft' },
+    ],
+  },
+  {
+    category: 'Location & Proximity Intelligence',
+    keywords: [
+      { term: 'NA Villa Plots 12 Mins from Chandani Chowk', url: '/plots/chandani-chowk' },
+      { term: 'PMRDA NA Land Near Hinjawadi IT Park', url: '/plots/hinjawadi' },
+      { term: 'Luxury Bungalow Plots Near Bavdhan and Kothrud', url: '/plots/bavdhan' },
+      { term: 'Hill Facing Villa Plots Paud Road Pirangut', url: '/plots/hill-facing' },
+      { term: 'Sahyadri Valley Gated Community Plots Pune', url: '/plots/features/gated-community' },
+    ],
+  },
+  {
+    category: 'Investment & Financial ROI',
+    keywords: [
+      { term: '14.2% CAGR NA Land Investment West Pune', url: '/investment/pune-real-estate-2025' },
+      { term: 'Plot vs Flat ROI Comparison Pune 2025', url: '/compare/plot-vs-flat-pune' },
+      { term: 'NRI Property Investment NA Plots Pune', url: '/investment/nri-plot-guide' },
+      { term: 'Stamp Duty and Registration Calculator NA Plots', url: '/na-plots-pune/stamp-duty-calculator' },
+      { term: 'Pirangut Real Estate Market Price Report', url: '/na-plots-pune/pirangut-market-report' },
+    ],
+  },
+];
+
