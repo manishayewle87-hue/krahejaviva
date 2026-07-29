@@ -6,7 +6,7 @@ import { BookSiteVisitModal } from './BookSiteVisitModal';
 
 const WHATSAPP_NUMBER = '917744009295';
 const WHATSAPP_MESSAGE = encodeURIComponent(
-  'Hi, I\'m interested in NA villa plots at K Raheja Corp Viva, Pirangut, West Pune. Please share details about available plots and pricing.'
+  'Hello, I am interested in K Raheja Corp Viva NA Bungalow Plots in Pirangut, West Pune. Please share the masterplan PDF, current price list, and available plot inventory.'
 );
 
 export function WhatsAppWidget() {

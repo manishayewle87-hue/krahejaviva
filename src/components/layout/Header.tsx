@@ -139,6 +139,16 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAIConcierge, onOpenSiteVis
               <span>AI Concierge</span>
             </button>
 
+            {/* WhatsApp CTA Button */}
+            <a
+              href="https://wa.me/917744009295?text=Hello%2C%20I%20am%20interested%20in%20K%20Raheja%20Corp%20Viva%20NA%20Bungalow%20Plots%20in%20Pirangut%2C%20West%20Pune.%20Please%20share%20the%20masterplan%20PDF%2C%20current%20price%20list%2C%20and%20available%20plot%20inventory."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3.5 py-1.5 rounded-full bg-[#25D366] text-white font-bold text-xs flex items-center space-x-1.5 hover:bg-[#20ba5a] transition-all shadow-sm"
+            >
+              <span>WhatsApp</span>
+            </a>
+
             {/* Book Visit Button */}
             <button
               onClick={onOpenSiteVisit}
