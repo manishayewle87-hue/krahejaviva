@@ -73,8 +73,8 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* ─── Mega Multi-Column Links Grid ─── */}
-        <div className="py-12 border-b border-[#C5A059]/20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+        {/* ─── 6-Column Strategic Domain Authority Matrix ─── */}
+        <div className="py-12 border-b border-[#C5A059]/20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-[#FAF8F5]/80">
           
           {/* Col 1: Raheja Viva Primary Hub */}
           <div className="space-y-3">
@@ -144,7 +144,7 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Col 5: Micro-Location Clusters */}
+          {/* Col 5: Location Clusters */}
           <div className="space-y-3">
             <h4 className="font-serif text-[#C5A059] text-sm font-bold uppercase tracking-wider flex items-center gap-1.5">
               <Compass className="w-4 h-4 text-[#C5A059]" /> Location Clusters
@@ -158,6 +158,23 @@ export const Footer: React.FC = () => {
               <li><Link href="/plots/paud-road" className="hover:text-[#C5A059] transition-colors">Plots on Paud Road</Link></li>
               <li><Link href="/plots/bhugaon" className="hover:text-[#C5A059] transition-colors">Plots in Bhugaon</Link></li>
               <li><Link href="/plots/sus" className="hover:text-[#C5A059] transition-colors">Plots in Sus & Wakad Corridor</Link></li>
+            </ul>
+          </div>
+
+          {/* Col 6: Pune NA Land Analytics */}
+          <div className="space-y-3">
+            <h4 className="font-serif text-[#C5A059] text-sm font-bold uppercase tracking-wider flex items-center gap-1.5">
+              <Award className="w-4 h-4 text-[#C5A059]" /> Market Data Analytics
+            </h4>
+            <ul className="space-y-2 text-xs">
+              <li><Link href="/na-plots-pune/pirangut-market-report" className="hover:text-[#C5A059] transition-colors font-medium">15.4% CAGR Land Appreciation</Link></li>
+              <li><Link href="/na-plots-pune/legal-checklist" className="hover:text-[#C5A059] transition-colors">PMRDA Sec 44 NA Clearances</Link></li>
+              <li><Link href="/plots/features/gated-community" className="hover:text-[#C5A059] transition-colors">Low-Density Land Zoning Rules</Link></li>
+              <li><Link href="/plots/baner" className="hover:text-[#C5A059] transition-colors">Baner-Bavdhan Buyers Guide</Link></li>
+              <li><Link href="/plots/wakad" className="hover:text-[#C5A059] transition-colors">Wakad IT Belt Proximity</Link></li>
+              <li><Link href="/plots/mulshi" className="hover:text-[#C5A059] transition-colors font-medium">Mulshi Hillside Corridor</Link></li>
+              <li><Link href="/raheja-viva-na-bungalow-plots/legal-rera-sanction" className="hover:text-[#C5A059] transition-colors">7/12 Title Mutation Registry</Link></li>
+              <li><Link href="/api/indexnow" target="_blank" className="hover:text-[#C5A059] transition-colors text-[11px] text-[#C5A059]/80 font-mono">IndexNow Protocol API</Link></li>
             </ul>
           </div>
 
