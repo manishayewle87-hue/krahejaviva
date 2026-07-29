@@ -28,7 +28,7 @@ export default function HindiPage() {
             <Link href="/" className="flex items-center gap-2 bg-[#122A23] text-white px-7 py-3.5 rounded-full font-bold text-sm hover:bg-[#1A3D33] transition-colors">
               प्रोजेक्ट देखें <ArrowRight className="w-4 h-4" />
             </Link>
-            <a href="tel:+918080445445" className="flex items-center gap-2 bg-white border-2 border-[#C5A059] text-[#122A23] px-7 py-3.5 rounded-full font-bold text-sm hover:bg-amber-50 transition-colors">
+            <a href="tel:+917744009295" className="flex items-center gap-2 bg-white border-2 border-[#C5A059] text-[#122A23] px-7 py-3.5 rounded-full font-bold text-sm hover:bg-amber-50 transition-colors">
               <Phone className="w-4 h-4 text-[#C5A059]" /> अभी कॉल करें
             </a>
           </div>
@@ -73,8 +73,8 @@ export default function HindiPage() {
         <div className="bg-[#122A23] rounded-2xl p-8 text-center">
           <h2 className="text-2xl font-bold text-white font-['Cinzel'] mb-2">आज ही साइट विज़िट बुक करें</h2>
           <p className="text-white/70 text-sm mb-6">हमारी विशेषज्ञ टीम आपको प्लॉट, कीमत और निवेश विश्लेषण के बारे में विस्तार से बताएगी।</p>
-          <a href="tel:+918080445445" className="inline-flex items-center gap-2 bg-[#C5A059] text-white px-8 py-4 rounded-full font-bold hover:bg-amber-500 transition-colors">
-            <Phone className="w-5 h-5" /> +91 80 8044 5445 पर कॉल करें
+          <a href="tel:+917744009295" className="inline-flex items-center gap-2 bg-[#C5A059] text-white px-8 py-4 rounded-full font-bold hover:bg-amber-500 transition-colors">
+            <Phone className="w-5 h-5" /> +91 77440 09295 पर कॉल करें
           </a>
         </div>
       </div>

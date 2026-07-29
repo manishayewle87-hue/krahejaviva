@@ -20,9 +20,25 @@ export const DownloadBrochureModal: React.FC<BrochureModalProps> = ({ isOpen, on
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setDownloaded(true);
+    try {
+      await fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          plotSize: formData.plotPreference,
+          message: `Buying Timeline: ${formData.buyingTimeline} | Preference: ${formData.plotPreference}`,
+          source: 'Download E-Brochure Modal',
+        }),
+      });
+    } catch (err) {
+      console.error('Brochure submit error:', err);
+    }
   };
 
   return (

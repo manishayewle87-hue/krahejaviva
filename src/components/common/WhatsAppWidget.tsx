@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Phone, X } from 'lucide-react';
 import { BookSiteVisitModal } from './BookSiteVisitModal';
 
-const WHATSAPP_NUMBER = '918080445445';
+const WHATSAPP_NUMBER = '917744009295';
 const WHATSAPP_MESSAGE = encodeURIComponent(
   'Hi, I\'m interested in NA villa plots at K Raheja Corp Viva, Pirangut, West Pune. Please share details about available plots and pricing.'
 );
@@ -53,7 +53,7 @@ export function WhatsAppWidget() {
           </button>
         ) : (
           <a 
-            href="tel:+918080445445"
+            href="tel:+917744009295"
             className="flex items-center justify-center w-14 h-14 bg-[#122A23] text-[#FAF8F5] rounded-full shadow-lg hover:shadow-xl border border-[#C5A059]/40 hover:bg-[#1A3D33] transition-all"
           >
             <Phone className="w-6 h-6 text-[#C5A059]" />

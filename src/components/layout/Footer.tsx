@@ -61,14 +61,14 @@ export const Footer: React.FC = () => {
                 <Phone className="w-3.5 h-3.5" />
                 <span>Sales Hotline</span>
               </div>
-              <p className="text-[#FAF8F5]/80 font-mono text-[11px]">+91 8080 445 445 / +91 20 6700 0000</p>
+              <p className="text-[#FAF8F5]/80 font-mono text-[11px]">+91 77440 09295</p>
             </div>
             <div className="space-y-1">
               <div className="flex items-center space-x-1.5 text-[#C5A059] font-bold uppercase text-[11px] tracking-wider">
                 <Mail className="w-3.5 h-3.5" />
                 <span>Official Inquiries</span>
               </div>
-              <p className="text-[#FAF8F5]/80 text-[11px]">viva.sales@kraheja.com</p>
+              <p className="text-[#FAF8F5]/80 text-[11px]">propsmartrealty@gmail.com</p>
             </div>
           </div>
         </div>

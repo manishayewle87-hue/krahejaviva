@@ -104,11 +104,11 @@ export default function RahejaVivaNaBungalowPlotsPage() {
 
               <div className="flex flex-wrap items-center gap-4">
                 <a
-                  href="tel:+918080445445"
+                  href="tel:+917744009295"
                   className="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold text-base hover:from-amber-400 hover:to-amber-500 transition-all shadow-lg shadow-amber-500/25 flex items-center gap-3"
                 >
                   <Phone className="w-5 h-5" />
-                  <span>Call Estate Desk: +91 8080 445 445</span>
+                  <span>Call Estate Desk: +91 77440 09295</span>
                 </a>
                 <Link
                   href="/raheja-viva-na-bungalow-plots/price-investment"

@@ -5,7 +5,7 @@ const SITE_URL = 'https://www.krahejacorpviva.com';
 const BRAND = 'K Raheja Corp Viva';
 const BRAND_ALT = 'K Raheja Viva';
 const PROJECT = 'K Raheja Corp Homes';
-const PHONE = '+918080445445';
+const PHONE = '+917744009295';
 const RERA_NUMBER = 'P52100004980';
 const OG_IMAGE = `${SITE_URL}/images/viva/viva-panoramic-aerial.jpg`;
 const LOGO = `${SITE_URL}/images/viva/kraheja-official-logo-cropped.png`;
@@ -148,14 +148,14 @@ export function organizationSchema() {
     contactPoint: [
       {
         '@type': 'ContactPoint',
-        telephone: '+91-8080-445-445',
+        telephone: '+91-77440-09295',
         contactType: 'sales',
         areaServed: 'IN',
         availableLanguage: ['English', 'Hindi', 'Marathi'],
       },
       {
         '@type': 'ContactPoint',
-        telephone: '+91-20-6700-0000',
+        telephone: '+91-77440-09295',
         contactType: 'customer service',
         areaServed: 'IN',
         availableLanguage: ['English', 'Hindi', 'Marathi'],

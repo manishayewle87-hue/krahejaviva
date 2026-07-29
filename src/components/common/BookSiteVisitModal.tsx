@@ -24,12 +24,25 @@ export const BookSiteVisitModal: React.FC<ModalProps> = ({ isOpen, onClose, plot
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    setTimeout(() => {
-      // simulate response
-    }, 500);
+    try {
+      await fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          date: formData.visitDate,
+          message: `Time Slot: ${formData.timeSlot} | Cab Pickup: ${formData.needCabPickUp ? formData.pickupLocation : 'No'}${plotNumber ? ` | Plot: ${plotNumber}` : ''}`,
+          source: 'Book VIP Site Visit Modal',
+        }),
+      });
+    } catch (err) {
+      console.error('Lead submit error:', err);
+    }
   };
 
   return (
